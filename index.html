@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLASSIFIED ARCHIVE</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+body {
+  margin: 0;
+  background: #050505;
+  color: #cfcfcf;
+  font-family: monospace;
+  text-align: center;
+  padding-top: 100px;
+}
+
+input {
+  padding: 10px;
+  margin: 10px;
+  background: #111;
+  color: white;
+  border: 1px solid #333;
+}
+
+button {
+  padding: 10px;
+  background: #222;
+  color: white;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+#app {
+  padding-top: 40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="gate">
+
+  <h1>CLASSIFIED ARCHIVE</h1>
+
+  <p>ENTER EMAIL TO REQUEST ACCESS</p>
+
+  <input id="email" placeholder="email">
+  <button onclick="login()">SEND ACCESS LINK</button>
+
+</div>
+
+<div id="app" class="hidden">
+
+  <h1>ACCESS GRANTED</h1>
+  <p>WELCOME TO THE ARCHIVE</p>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
