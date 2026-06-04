@@ -3,34 +3,85 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCHIVE OS</title>
+<title>ARCHIVE OS v2</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- LOGIN (SIEMPRE VISIBLE AL INICIO) -->
+<!-- LOGIN -->
 <div id="login" class="login">
 
-  <h1>ARCHIVE OS</h1>
+  <div class="panel">
+    <h1>ARCHIVE OS</h1>
+    <p>secure access terminal</p>
 
-  <input id="password" type="password" placeholder="access key">
-  <button onclick="login()">ENTER</button>
+    <input id="password" type="password" placeholder="access key">
+    <button onclick="login()">ENTER SYSTEM</button>
 
-  <p id="error"></p>
+    <p id="error"></p>
+  </div>
 
 </div>
 
-<!-- DESKTOP (OCULTO) -->
+<!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
-  <h2>DESKTOP ACTIVE</h2>
+  <!-- ICONOS -->
+  <div class="icon" style="top:60px;left:40px;" ondblclick="openWindow('notes')">🗂 archive_notes</div>
+  <div class="icon" style="top:140px;left:40px;" ondblclick="openWindow('audio')">🎧 sound_core</div>
+  <div class="icon" style="top:220px;left:40px;" ondblclick="openWindow('video')">🎬 visual_logs</div>
+  <div class="icon" style="top:300px;left:40px;" ondblclick="openWindow('images')">🖼 memory_dump</div>
 
-  <div onclick="openWindow('notes')">notes.txt</div>
+  <!-- WINDOWS -->
 
-  <div id="notes" class="window hidden">
-    <p>trap villian exclusive</p>
+  <div id="notes" class="window">
+    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
+      archive_notes.txt
+    </div>
+    <div class="content">
+      <p>trap villian exclusive</p>
+    </div>
     <button onclick="closeWindow('notes')">close</button>
+  </div>
+
+  <div id="audio" class="window">
+    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
+      sound_core
+    </div>
+    <div class="content">
+      <div>session_01.mp3</div>
+      <div>session_02.mp3</div>
+    </div>
+    <button onclick="closeWindow('audio')">close</button>
+  </div>
+
+  <div id="video" class="window">
+    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
+      visual_logs
+    </div>
+    <div class="content">
+      <div>clip_01.mp4</div>
+    </div>
+    <button onclick="closeWindow('video')">close</button>
+  </div>
+
+  <div id="images" class="window">
+    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
+      memory_dump
+    </div>
+    <div class="content">
+      <div>frame_01.jpg</div>
+      <div>frame_02.jpg</div>
+    </div>
+    <button onclick="closeWindow('images')">close</button>
+  </div>
+
+  <!-- TASKBAR -->
+  <div class="taskbar">
+    <div class="start">AOS</div>
+    <div class="title">ARCHIVE SYSTEM ONLINE</div>
+    <div class="clock" id="clock">00:00</div>
   </div>
 
 </div>
