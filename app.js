@@ -321,3 +321,7 @@ function startSnake(){
 
   },120);
 }
+  
+function openFile(path){
+  window.open(path, "_blank");
+}
