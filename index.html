@@ -12,8 +12,11 @@
 <div id="login" class="login">
   <div class="login-box">
     <h3>SYSTEM ACCESS</h3>
+
     <input id="password" type="password" placeholder="password">
+
     <button onclick="login()">ENTER</button>
+
     <p id="error"></p>
   </div>
 </div>
@@ -27,30 +30,29 @@
     <span id="clock"></span>
   </div>
 
-  <!-- ICONOS -->
   <div id="desktopArea">
 
-    <div class="icon" data-id="images" onclick="openWindow('images')">
+    <div class="icon" onclick="openWindow('images')">
       🖼️<span>imágenes</span>
     </div>
 
-    <div class="icon" data-id="video" onclick="openWindow('video')">
+    <div class="icon" onclick="openWindow('video')">
       📁<span>videos</span>
     </div>
 
-    <div class="icon" data-id="notes" onclick="openWindow('notes')">
+    <div class="icon" onclick="openWindow('notes')">
       📄<span>texto</span>
     </div>
 
-    <div class="icon" data-id="unknown" onclick="openWindow('unknown')">
+    <div class="icon" onclick="openWindow('unknown')">
       📁<span>unknown</span>
     </div>
 
-    <div class="icon" data-id="snake" onclick="openWindow('snake')">
+    <div class="icon" onclick="openWindow('snake')">
       🐍<span>snake</span>
     </div>
 
-    <div class="icon" data-id="recycle" onclick="openWindow('recycle')">
+    <div class="icon" onclick="openWindow('recycle')">
       🗑️<span>Papelera</span>
     </div>
 
@@ -100,6 +102,7 @@
     <div class="titlebar">reproductor <div class="close-btn" onclick="closeWindow('player')">✖</div></div>
     <div class="content">
       <ul id="playlist"></ul>
+
       <button onclick="play()">▶</button>
       <button onclick="pause()">⏸</button>
       <button onclick="next()">⏭</button>
