@@ -18,6 +18,17 @@ function renderDesktop() {
   renderFolder("recycle");
 }
 
+function renderFolder(folderName) {
+  const windowEl = document.getElementById(folderName);
+  const content = windowEl.querySelector(".content");
+
+  const files = fileSystem.filter(f => f.includes(folderName));
+
+  content.innerHTML = files.length
+    ? files.map(f => `<div>📄 ${f.split("/").pop()}</div>`).join("")
+    : "No files";
+}
+
 /* SOUNDS */
 const boot = new Audio("sounds/boot.mp3");
 const error = new Audio("sounds/error.mp3");
