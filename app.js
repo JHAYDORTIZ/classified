@@ -1,6 +1,24 @@
 let isAdmin = false;
 let currentUser = null;
 
+let fileSystem = [];
+
+fetch("index-media.json")
+  .then(r => r.json())
+  .then(data => {
+    fileSystem = data.files;
+    renderDesktop();
+  });
+
+function renderDesktop() {
+  console.log("Archivos cargados:", fileSystem);
+
+  // ejemplo: mostrar en unknown
+  const unknownFiles = fileSystem.filter(f => f.includes("unknown"));
+
+  console.log("Unknown:", unknownFiles);
+}
+
 /* SOUNDS */
 const boot = new Audio("sounds/boot.mp3");
 const error = new Audio("sounds/error.mp3");
