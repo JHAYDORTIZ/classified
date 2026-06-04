@@ -3,7 +3,7 @@ body {
   font-family: Tahoma, Arial, sans-serif;
 }
 
-/* LOGIN */
+/* LOGIN BACKGROUND */
 .login-screen {
   height: 100vh;
   background: url("assets/login-bg.jpg") center/cover;
@@ -12,7 +12,7 @@ body {
   align-items: center;
 }
 
-/* DESKTOP */
+/* DESKTOP BACKGROUND */
 #desktop {
   height: 100vh;
   background: url("assets/desktop-bg.jpg") center/cover;
@@ -63,22 +63,17 @@ body {
   font-size: 12px;
 }
 
-/* START BUTTON */
+/* START */
 .start {
   background: #3aa63a;
   padding: 6px 12px;
   font-weight: bold;
   margin-right: 10px;
-  cursor: pointer;
-}
-
-/* TASK TITLE */
-.task-title {
-  flex: 1;
 }
 
 /* CLOCK */
 .clock {
+  margin-left: auto;
   padding-right: 10px;
   font-weight: bold;
 }
