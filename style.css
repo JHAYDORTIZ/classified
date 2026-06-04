@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: Tahoma, sans-serif;
+  font-family: Tahoma;
 }
 
 /* LOGIN */
@@ -9,38 +9,43 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url("assets/backgrounds/login.jpg") center/cover no-repeat;
+  background: url("assets/backgrounds/login.jpg") center/cover;
 }
 
 .login-box {
   background: #ece9d8;
   padding: 20px;
-  width: 260px;
   border: 2px solid #0a246a;
-  text-align: center;
-  box-shadow: 3px 3px 0 rgba(0,0,0,0.3);
 }
 
 /* DESKTOP */
 #desktop {
   height: 100vh;
-  background: url("assets/backgrounds/desktop.jpg") center/cover no-repeat;
+  background: url("assets/backgrounds/desktop.jpg") center/cover;
 }
 
-/* ICONOS */
-.desktop {
-  display: flex;
-  gap: 20px;
-  padding: 40px;
-  flex-wrap: wrap;
+/* ICONOS GRID INICIAL */
+#desktopArea {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 200px;
+  height: 400px;
 }
 
+/* ICONO XP */
 .icon {
-  width: 100px;
-  padding: 10px;
-  background: #ece9d8;
-  border: 2px solid #0a246a;
-  cursor: pointer;
+  position: absolute;
+  width: 70px;
+  text-align: center;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  cursor: grab;
+}
+
+.icon span {
+  display: block;
+  font-size: 12px;
 }
 
 /* TASKBAR */
@@ -59,45 +64,21 @@ body {
   width: 200px;
 }
 
-#clock {
-  min-width: 80px;
-  text-align: right;
-  padding-right: 10px;
-}
-
-/* WINDOWS XP */
+/* WINDOWS */
 .window {
   position: absolute;
-  top: 120px;
-  left: 120px;
   width: 320px;
   background: #ece9d8;
   border: 2px solid #0a246a;
 }
 
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
 .titlebar {
   background: linear-gradient(to right, #0058e6, #4f8ff7);
   color: white;
   padding: 4px;
-  font-weight: bold;
   cursor: move;
 }
 
-.content {
-  padding: 10px;
-}
-
-/* TEXTAREA */
-textarea {
-  width: 100%;
-  height: 100px;
-}
-
-/* CLOCK FIX */
-#clock {
-  min-width: 80px;
-}
+.content { padding: 10px; }
