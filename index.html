@@ -12,8 +12,10 @@
 <div id="login" class="login">
   <div class="login-box">
     <h3>SYSTEM ACCESS</h3>
+
     <input id="password" type="password" placeholder="password">
     <button id="loginBtn">ENTER</button>
+
     <p id="error"></p>
   </div>
 </div>
@@ -21,12 +23,16 @@
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
+  <!-- TASKBAR -->
   <div class="taskbar">
     <span>CLASSIFIED OS</span>
+
     <input id="search" placeholder="Search..." oninput="searchFiles()">
+
     <span id="clock"></span>
   </div>
 
+  <!-- ICONOS -->
   <div id="desktopArea">
 
     <div class="icon" onclick="openWindow('images')">🖼️<span>imágenes</span></div>
@@ -34,8 +40,7 @@
     <div class="icon" onclick="openWindow('notes')">📄<span>texto</span></div>
     <div class="icon" onclick="openWindow('unknown')">📁<span>unknown</span></div>
     <div class="icon" onclick="openWindow('snake')">🐍<span>snake</span></div>
-    <div class="icon" onclick="openWindow('recycle')">🗑️<span>papelera</span></div>
-
+    <div class="icon" onclick="openWindow('recycle')">🗑️<span>Papelera de reciclaje</span></div>
     <div class="icon" onclick="openPlayer()">🎵<span>reproductor</span></div>
 
   </div>
@@ -54,7 +59,9 @@
 
   <div id="notes" class="window hidden">
     <div class="titlebar">texto <div class="close-btn" onclick="closeWindow('notes')">✖</div></div>
-    <div class="content"><textarea>trap villian exclusive</textarea></div>
+    <div class="content">
+      <textarea>trap villian exclusive</textarea>
+    </div>
   </div>
 
   <div id="unknown" class="window hidden">
@@ -75,7 +82,7 @@
     </div>
   </div>
 
-  <!-- 🔥 REPRODUCTOR REAL -->
+  <!-- REPRODUCTOR -->
   <div id="player" class="window hidden">
     <div class="titlebar">reproductor <div class="close-btn" onclick="closeWindow('player')">✖</div></div>
 
@@ -83,12 +90,10 @@
 
       <div style="display:flex; gap:10px;">
 
-        <!-- LISTA -->
         <div style="width:40%;">
           <ul id="playlist"></ul>
         </div>
 
-        <!-- CONTROLES -->
         <div style="width:60%;">
           <button onclick="play()">▶</button>
           <button onclick="pause()">⏸</button>
@@ -98,7 +103,8 @@
 
           <br><br>
 
-          <input type="range" id="seekBar" min="0" max="100" value="0" oninput="setTime(this.value)">
+          <input type="range" id="seekBar" min="0" max="100"
+                 oninput="setTime(this.value)">
         </div>
 
       </div>
@@ -106,7 +112,7 @@
     </div>
   </div>
 
-  <!-- SEARCH WINDOW -->
+  <!-- SEARCH -->
   <div id="searchWindow" class="window hidden">
     <div class="titlebar">search <div class="close-btn" onclick="closeWindow('searchWindow')">✖</div></div>
     <div id="searchResults" class="content"></div>
