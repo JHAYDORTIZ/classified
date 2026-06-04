@@ -28,33 +28,22 @@
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
-  <!-- ICONS (Windows desktop style vertical) -->
-  <div class="desktop">
-
-    <div class="icon" style="top:40px;left:40px;" draggable="true"
-         ondblclick="openWindow('txtWindow')">
-      📄 notes.txt
-    </div>
-
-    <div class="icon" style="top:120px;left:40px;" draggable="true"
-         ondblclick="openWindow('musicWindow')">
-      📁 audio
-    </div>
-
-    <div class="icon" style="top:200px;left:40px;" draggable="true"
-         ondblclick="openWindow('videoWindow')">
-      📁 videos
-    </div>
-
-    <div class="icon" style="top:280px;left:40px;" draggable="true"
-         ondblclick="openWindow('photoWindow')">
-      📁 images
-    </div>
-
-  </div>
+  <!-- ICONS -->
+  <div class="icon" style="top:50px;left:40px;" ondblclick="openWindow('txtWindow')">📄 notes.txt</div>
+  <div class="icon" style="top:130px;left:40px;" ondblclick="openWindow('musicWindow')">📁 audio</div>
+  <div class="icon" style="top:210px;left:40px;" ondblclick="openWindow('videoWindow')">📁 videos</div>
+  <div class="icon" style="top:290px;left:40px;" ondblclick="openWindow('photoWindow')">📁 images</div>
 
   <!-- TASKBAR -->
-  <div class="taskbar">CLASSIFIED SYSTEM</div>
+  <div class="taskbar">
+
+    <div class="start">START</div>
+
+    <div class="task-title">CLASSIFIED SYSTEM</div>
+
+    <div class="clock" id="clock">00:00</div>
+
+  </div>
 
   <!-- WINDOWS -->
 
