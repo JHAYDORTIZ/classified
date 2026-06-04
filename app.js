@@ -21,22 +21,13 @@ function closeWindow(id) {
   document.getElementById(id).style.display = "none";
 }
 
-/* DRAG ICONS (WINDOWS STYLE BASIC) */
-let drag = null;
+/* CLOCK */
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, "0");
+  const m = String(now.getMinutes()).padStart(2, "0");
+  document.getElementById("clock").innerText = `${h}:${m}`;
+}
 
-document.addEventListener("mousedown", (e) => {
-  if (e.target.classList.contains("icon")) {
-    drag = e.target;
-  }
-});
-
-document.addEventListener("mousemove", (e) => {
-  if (drag) {
-    drag.style.left = e.pageX + "px";
-    drag.style.top = e.pageY + "px";
-  }
-});
-
-document.addEventListener("mouseup", () => {
-  drag = null;
-});
+setInterval(updateClock, 1000);
+updateClock();
