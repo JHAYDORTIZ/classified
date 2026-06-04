@@ -33,7 +33,7 @@ function login() {
   }
 }
 
-/* CLICK */
+/* CLICK SOUND */
 document.addEventListener("click", e => {
   if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
     clickSound.currentTime = 0;
@@ -41,12 +41,15 @@ document.addEventListener("click", e => {
   }
 });
 
-/* WINDOWS */
+/* OPEN WINDOW */
 function openWindow(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
+/* CLOSE WINDOW + SOUND */
 function closeWindow(id) {
+  clickSound.currentTime = 0;
+  clickSound.play();
   document.getElementById(id).classList.add("hidden");
 }
 
@@ -87,9 +90,8 @@ document.querySelectorAll(".icon").forEach(icon => {
 
 document.addEventListener("mousemove", e => {
   if (dragIcon) {
-    dragIcon.style.position = "absolute";
-    dragIcon.style.left = Math.round((e.pageX - ix) / 80) * 80 + "px";
-    dragIcon.style.top = Math.round((e.pageY - iy) / 80) * 80 + "px";
+    dragIcon.style.left = Math.round((e.pageX - ix) / 90) * 90 + "px";
+    dragIcon.style.top = Math.round((e.pageY - iy) / 90) * 90 + "px";
   }
 });
 
@@ -105,7 +107,7 @@ function searchFiles() {
 
   document.querySelectorAll(".icon").forEach(i => {
     if (i.textContent.toLowerCase().includes(q)) {
-      res.push(i.textContent);
+      res.push(i.querySelector("span").textContent);
     }
   });
 
@@ -114,8 +116,20 @@ function searchFiles() {
   win.classList.remove("hidden");
 
   box.innerHTML = res.length
-    ? res.map(r => `<p>${r}</p>`).join("")
+    ? res.map(r => `<p onclick="openFromSearch('${r}')">${r}</p>`).join("")
     : "<p>No results found</p>";
+}
+
+function openFromSearch(name) {
+  const map = {
+    "audios": "audio",
+    "videos": "video",
+    "imágenes": "images",
+    "texto": "notes",
+    "snake": "snake"
+  };
+
+  if (map[name]) openWindow(map[name]);
 }
 
 /* SNAKE */
