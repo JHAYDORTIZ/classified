@@ -29,11 +29,13 @@ function renderFolder(folderName) {
   );
 
   content.innerHTML = files.length
-   files.map(f =>
-  `<div onclick="openFile('${f}')" style="cursor:pointer">
-    📄 ${f.split("/").pop()}
-   </div>`
-)
+    ? files.map(f =>
+        `<div onclick="openFile('${f}')" style="cursor:pointer">
+          📄 ${f.split("/").pop()}
+        </div>`
+      ).join("")
+    : "No files";
+}
 
 /* SOUNDS */
 const boot = new Audio("sounds/boot.mp3");
