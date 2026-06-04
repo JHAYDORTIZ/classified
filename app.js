@@ -48,10 +48,12 @@ function openWindow(id){
 
 }
 
+const clickSound = new Audio("sounds/click.mp3");
+clickSound.volume = 0.5;
+
 function playClick(){
-  const click = new Audio("sounds/click.mp3");
-  click.volume = 0.5;
-  click.play().catch(()=>{});
+  clickSound.currentTime = 0;
+  clickSound.play().catch(()=>{});
 }
 
 function closeWindow(id){
