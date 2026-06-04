@@ -1,3 +1,5 @@
+console.log("APP JS CARGADO");
+
 let isAdmin = false;
 let currentUser = null;
 
