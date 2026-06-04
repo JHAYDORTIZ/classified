@@ -1,0 +1,10 @@
+{
+  "images": [
+    "media/images/img1.jpg",
+    "media/images/img2.jpg"
+  ],
+  "audio": [
+    "media/audio/track1.mp3"
+  ],
+  "videos": []
+}
