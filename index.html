@@ -10,29 +10,20 @@
 
 <!-- LOGIN -->
 <div id="login">
-  <div class="box">
-    <h3>ACCESS SYSTEM</h3>
-
-    <input id="password" type="password" placeholder="password">
-    <button onclick="login()">ENTER</button>
-
-    <p id="error"></p>
-  </div>
+  <input id="password" type="password" placeholder="password">
+  <button onclick="login()">ENTER</button>
+  <p id="error"></p>
 </div>
 
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
-  <!-- TASKBAR -->
   <div id="taskbar">
     <span>CLASSIFIED OS</span>
-
     <input id="search" oninput="search()" placeholder="search">
-
     <span id="clock"></span>
   </div>
 
-  <!-- ICON GRID -->
   <div id="icons">
 
     <div onclick="openWin('images')">🖼 imágenes</div>
@@ -46,53 +37,24 @@
   </div>
 
   <!-- WINDOWS -->
+  <div id="images" class="win hidden"><div class="bar" onmousedown="drag(this)">imágenes <button onclick="closeWin('images')">X</button></div><div class="content"></div></div>
 
-  <div id="images" class="win hidden">
-    <div class="bar">imágenes <button onclick="closeWin('images')">✖</button></div>
-    <div class="content"></div>
-  </div>
+  <div id="video" class="win hidden"><div class="bar" onmousedown="drag(this)">videos <button onclick="closeWin('video')">X</button></div><div class="content"></div></div>
 
-  <div id="video" class="win hidden">
-    <div class="bar">videos <button onclick="closeWin('video')">✖</button></div>
-    <div class="content"></div>
-  </div>
+  <div id="notes" class="win hidden"><div class="bar" onmousedown="drag(this)">texto <button onclick="closeWin('notes')">X</button></div><div class="content"><textarea></textarea></div></div>
 
-  <div id="notes" class="win hidden">
-    <div class="bar">texto <button onclick="closeWin('notes')">✖</button></div>
-    <div class="content"><textarea></textarea></div>
-  </div>
+  <div id="unknown" class="win hidden"><div class="bar" onmousedown="drag(this)">unknown <button onclick="closeWin('unknown')">X</button></div><div class="content"></div></div>
 
-  <div id="unknown" class="win hidden">
-    <div class="bar">unknown <button onclick="closeWin('unknown')">✖</button></div>
-    <div class="content"></div>
-  </div>
+  <div id="recycle" class="win hidden"><div class="bar" onmousedown="drag(this)">papelera <button onclick="closeWin('recycle')">X</button></div><div class="content"></div></div>
 
-  <div id="recycle" class="win hidden">
-    <div class="bar">Papelera de reciclaje <button onclick="closeWin('recycle')">✖</button></div>
-    <div class="content"></div>
-  </div>
-
-  <!-- SNAKE -->
-  <div id="snake" class="win hidden">
-    <div class="bar">snake <button onclick="closeWin('snake')">✖</button></div>
-    <div class="content">
-      <canvas id="game" width="300" height="300"></canvas>
-      <button onclick="startSnake()">START</button>
-    </div>
-  </div>
-
-  <!-- PLAYER -->
   <div id="player" class="win hidden">
-    <div class="bar">reproductor <button onclick="closeWin('player')">✖</button></div>
-
+    <div class="bar" onmousedown="drag(this)">reproductor <button onclick="closeWin('player')">X</button></div>
     <div class="content">
       <ul id="playlist"></ul>
-
       <button onclick="play()">play</button>
       <button onclick="pause()">pause</button>
       <button onclick="next()">next</button>
-
-      <input type="range" min="0" max="100" oninput="seek(this.value)">
+      <input type="range" oninput="seek(this.value)">
     </div>
   </div>
 
