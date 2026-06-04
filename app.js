@@ -1,24 +1,27 @@
-const PASSWORD = "4tanyatapes";
+const ADMIN_PASSWORD = "pizza17";
+const USER_PASSWORD = "4tanyatapes";
 
 /* SOUNDS */
+const bootSound = new Audio("sounds/boot.mp3");
 const clickSound = new Audio("sounds/click.mp3");
 const errorSound = new Audio("sounds/error.mp3");
-const bootSound = new Audio("sounds/boot.mp3");
 
-/* BOOT */
-window.addEventListener("load", () => {
+bootSound.volume = 0.7;
+clickSound.volume = 0.25;
+errorSound.volume = 0.5;
+
+/* BOOT (fix navegadores) */
+window.addEventListener("click", function bootOnce() {
   bootSound.play().catch(() => {});
-  startClock();
+  window.removeEventListener("click", bootOnce);
 });
 
 /* CLOCK */
-function startClock() {
-  setInterval(() => {
-    const now = new Date();
-    document.getElementById("clock").textContent =
-      now.getHours() + ":" + now.getMinutes().toString().padStart(2, "0");
-  }, 1000);
-}
+setInterval(() => {
+  const d = new Date();
+  document.getElementById("clock").textContent =
+    d.getHours() + ":" + d.getMinutes().toString().padStart(2, "0");
+}, 1000);
 
 /* CLICK GLOBAL */
 document.addEventListener("click", (e) => {
@@ -32,41 +35,48 @@ document.addEventListener("click", (e) => {
 function login() {
   const input = document.getElementById("password").value;
 
-  if (input === PASSWORD) {
-    document.getElementById("login").classList.add("hidden");
+  if (input === ADMIN_PASSWORD || input === USER_PASSWORD) {
+    document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
   } else {
-    document.getElementById("error").textContent = "ACCESS DENIED";
     errorSound.currentTime = 0;
     errorSound.play();
+    document.getElementById("error").textContent = "ACCESS DENIED";
   }
 }
 
 /* WINDOWS */
 function openWindow(id) {
-  const el = document.getElementById(id);
-  el.classList.remove("hidden");
+  document.getElementById(id).classList.remove("hidden");
 }
 
 function closeWindow(id) {
   document.getElementById(id).classList.add("hidden");
 }
 
+/* SEARCH */
+function searchFiles() {
+  const q = document.getElementById("search").value.toLowerCase();
+  document.querySelectorAll(".icon").forEach(i => {
+    i.style.display = i.textContent.toLowerCase().includes(q) ? "block" : "none";
+  });
+}
+
 /* SNAKE */
-let snake, dir, food, ctx, interval;
+let snake, dir, food, ctx, loop;
 
 function startSnake() {
-  const canvas = document.getElementById("snakeCanvas");
-  ctx = canvas.getContext("2d");
+  const c = document.getElementById("game");
+  ctx = c.getContext("2d");
 
   snake = [{ x: 5, y: 5 }];
   dir = { x: 1, y: 0 };
-  food = randomFood();
+  food = { x: 10, y: 10 };
 
-  document.addEventListener("keydown", moveSnake);
+  document.addEventListener("keydown", move);
 
-  clearInterval(interval);
-  interval = setInterval(game, 150);
+  clearInterval(loop);
+  loop = setInterval(game, 150);
 }
 
 function game() {
@@ -75,23 +85,9 @@ function game() {
     y: snake[0].y + dir.y
   };
 
-  if (head.x < 0 || head.y < 0 || head.x > 19 || head.y > 19) {
-    resetSnake();
-    return;
-  }
-
   snake.unshift(head);
+  snake.pop();
 
-  if (head.x === food.x && head.y === food.y) {
-    food = randomFood();
-  } else {
-    snake.pop();
-  }
-
-  draw();
-}
-
-function draw() {
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, 300, 300);
 
@@ -102,21 +98,9 @@ function draw() {
   ctx.fillRect(food.x * 15, food.y * 15, 14, 14);
 }
 
-function randomFood() {
-  return {
-    x: Math.floor(Math.random() * 20),
-    y: Math.floor(Math.random() * 20)
-  };
-}
-
-function moveSnake(e) {
+function move(e) {
   if (e.key === "ArrowUp") dir = { x: 0, y: -1 };
   if (e.key === "ArrowDown") dir = { x: 0, y: 1 };
   if (e.key === "ArrowLeft") dir = { x: -1, y: 0 };
   if (e.key === "ArrowRight") dir = { x: 1, y: 0 };
-}
-
-function resetSnake() {
-  clearInterval(interval);
-  startSnake();
 }
