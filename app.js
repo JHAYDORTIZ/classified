@@ -22,9 +22,10 @@ function renderFolder(folderName) {
   const windowEl = document.getElementById(folderName);
   const content = windowEl.querySelector(".content");
 
- const files = fileSystem.filter(f =>
-  f.split("/")[1] === folderName
-);
+  const files = fileSystem.filter(f => {
+    const parts = f.split("/");
+    return parts.length >= 3 && parts[1] === folderName;
+  });
 
   content.innerHTML = files.length
     ? files.map(f => `<div>📄 ${f.split("/").pop()}</div>`).join("")
