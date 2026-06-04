@@ -1,9 +1,9 @@
 body {
   margin: 0;
-  font-family: Tahoma, Arial;
+  font-family: Tahoma, Arial, sans-serif;
 }
 
-/* LOGIN BACKGROUND */
+/* LOGIN */
 .login-screen {
   height: 100vh;
   background: url("assets/login-bg.jpg") center/cover;
@@ -12,7 +12,7 @@ body {
   align-items: center;
 }
 
-/* DESKTOP BACKGROUND */
+/* DESKTOP */
 #desktop {
   height: 100vh;
   background: url("assets/desktop-bg.jpg") center/cover;
@@ -21,10 +21,11 @@ body {
 /* WINDOWS */
 .window {
   position: absolute;
-  width: 400px;
+  width: 420px;
   background: #ece9d8;
   border: 2px solid #0a246a;
   box-shadow: 4px 4px 0 black;
+  display: none;
 }
 
 .titlebar {
@@ -39,7 +40,7 @@ body {
   background: #ece9d8;
 }
 
-/* ICONS (DESKTOP STYLE) */
+/* ICONS */
 .icon {
   position: absolute;
   width: 80px;
@@ -54,17 +55,42 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 30px;
+  height: 32px;
   background: #245edb;
-  color: white;
   display: flex;
   align-items: center;
-  padding-left: 10px;
+  color: white;
+  font-size: 12px;
 }
 
-/* LOGIN WINDOW */
+/* START BUTTON */
+.start {
+  background: #3aa63a;
+  padding: 6px 12px;
+  font-weight: bold;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* TASK TITLE */
+.task-title {
+  flex: 1;
+}
+
+/* CLOCK */
+.clock {
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+/* LOGIN BOX */
 .login-box {
   width: 300px;
+}
+
+/* ERROR */
+#error {
+  color: red;
 }
 
 /* HIDDEN */
