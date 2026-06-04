@@ -23,60 +23,78 @@
 
   <div class="taskbar">
     <span>CLASSIFIED OS</span>
+
     <input id="search" placeholder="Search..." oninput="searchFiles()">
+
     <span id="clock"></span>
   </div>
 
   <!-- ICONOS -->
   <div id="desktopArea">
 
-    <div class="icon" data-id="audio" onclick="openWindow('audio')">
+    <div class="icon" onclick="openWindow('audio')">
       📁<span>audios</span>
     </div>
 
-    <div class="icon" data-id="video" onclick="openWindow('video')">
+    <div class="icon" onclick="openWindow('video')">
       📁<span>videos</span>
     </div>
 
-    <div class="icon" data-id="images" onclick="openWindow('images')">
+    <div class="icon" onclick="openWindow('images')">
       🖼️<span>imagenes</span>
     </div>
 
-    <div class="icon" data-id="notes" onclick="openWindow('notes')">
+    <div class="icon" onclick="openWindow('notes')">
       📄<span>texto</span>
     </div>
 
-    <div class="icon" data-id="snake" onclick="openWindow('snake')">
+    <div class="icon" onclick="openWindow('snake')">
       🐍<span>snake</span>
     </div>
 
   </div>
 
   <!-- WINDOWS -->
+
   <div id="audio" class="window hidden">
-    <div class="titlebar">audios</div>
+    <div class="titlebar">
+      audios
+      <div class="close-btn" onclick="closeWindow('audio')">✖</div>
+    </div>
     <div class="content">No files</div>
   </div>
 
   <div id="video" class="window hidden">
-    <div class="titlebar">videos</div>
+    <div class="titlebar">
+      videos
+      <div class="close-btn" onclick="closeWindow('video')">✖</div>
+    </div>
     <div class="content">No files</div>
   </div>
 
   <div id="images" class="window hidden">
-    <div class="titlebar">imagenes</div>
+    <div class="titlebar">
+      imagenes
+      <div class="close-btn" onclick="closeWindow('images')">✖</div>
+    </div>
     <div class="content">No files</div>
   </div>
 
   <div id="notes" class="window hidden">
-    <div class="titlebar">texto</div>
+    <div class="titlebar">
+      texto
+      <div class="close-btn" onclick="closeWindow('notes')">✖</div>
+    </div>
     <div class="content">
       <textarea>trap villian exclusive</textarea>
     </div>
   </div>
 
   <div id="snake" class="window hidden">
-    <div class="titlebar">snake.exe</div>
+    <div class="titlebar">
+      snake.exe
+      <div class="close-btn" onclick="closeWindow('snake')">✖</div>
+    </div>
     <div class="content">
       <canvas id="game" width="300" height="300"></canvas>
       <button onclick="startSnake()">START</button>
@@ -85,7 +103,10 @@
 
   <!-- SEARCH -->
   <div id="searchWindow" class="window hidden">
-    <div class="titlebar">Search</div>
+    <div class="titlebar">
+      search
+      <div class="close-btn" onclick="closeWindow('searchWindow')">✖</div>
+    </div>
     <div id="searchResults" class="content"></div>
   </div>
 
