@@ -1,5 +1,6 @@
-let audio = new Audio();
+
 let current = 0;
+let audio = new Audio();
 
 /* LOGIN */
 function login() {
@@ -9,7 +10,7 @@ function login() {
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
   } else {
-    document.getElementById("error").innerText = "error";
+    document.getElementById("error").innerText = "ACCESS DENIED";
   }
 }
 
@@ -19,18 +20,18 @@ function openWin(id) {
 }
 
 function closeWin(id) {
-  playClick();
+  click();
   document.getElementById(id).classList.add("hidden");
 }
 
-/* CLICK SOUND FIX */
-function playClick() {
+/* CLICK SOUND (estable) */
+function click() {
   const c = new Audio("sounds/click.mp3");
   c.volume = 0.5;
   c.play();
 }
 
-/* DRAG FIX DEFINITIVO */
+/* DRAG SYSTEM (estable real) */
 let dragEl = null;
 let offsetX = 0;
 let offsetY = 0;
@@ -40,11 +41,10 @@ document.addEventListener("mousedown", (e) => {
   if (!bar) return;
 
   dragEl = bar.parentElement;
+  const r = dragEl.getBoundingClientRect();
 
-  const rect = dragEl.getBoundingClientRect();
-
-  offsetX = e.clientX - rect.left;
-  offsetY = e.clientY - rect.top;
+  offsetX = e.clientX - r.left;
+  offsetY = e.clientY - r.top;
 });
 
 document.addEventListener("mousemove", (e) => {
@@ -61,8 +61,8 @@ document.addEventListener("mouseup", () => {
 /* CLOCK */
 setInterval(() => {
   const d = new Date();
-  document.getElementById("clock").innerText =
-    d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  const el = document.getElementById("clock");
+  if (el) el.innerText = d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
 }, 1000);
 
 /* SEARCH SIMPLE */
@@ -76,16 +76,16 @@ function search() {
   });
 }
 
-/* SNAKE FIX */
+/* SNAKE (FUNCIONAL SIMPLE) */
 function startSnake() {
-  const canvas = document.getElementById("game");
-  const ctx = canvas.getContext("2d");
+  const c = document.getElementById("game");
+  const ctx = c.getContext("2d");
 
-  let snake = [{ x: 150, y: 150 }];
-  let dir = { x: 10, y: 0 };
+  let snake = [{x:150,y:150}];
+  let dir = {x:10,y:0};
 
   function loop() {
-    ctx.clearRect(0, 0, 300, 300);
+    ctx.clearRect(0,0,300,300);
 
     snake.unshift({
       x: snake[0].x + dir.x,
@@ -94,9 +94,9 @@ function startSnake() {
 
     snake.pop();
 
-    snake.forEach(p => {
-      ctx.fillStyle = "green";
-      ctx.fillRect(p.x, p.y, 10, 10);
+    snake.forEach(p=>{
+      ctx.fillStyle="green";
+      ctx.fillRect(p.x,p.y,10,10);
     });
 
     requestAnimationFrame(loop);
@@ -105,35 +105,27 @@ function startSnake() {
   loop();
 
   document.onkeydown = (e) => {
-    if (e.key === "ArrowUp") dir = { x: 0, y: -10 };
-    if (e.key === "ArrowDown") dir = { x: 0, y: 10 };
-    if (e.key === "ArrowLeft") dir = { x: -10, y: 0 };
-    if (e.key === "ArrowRight") dir = { x: 10, y: 0 };
+    if (e.key==="ArrowUp") dir={x:0,y:-10};
+    if (e.key==="ArrowDown") dir={x:0,y:10};
+    if (e.key==="ArrowLeft") dir={x:-10,y:0};
+    if (e.key==="ArrowRight") dir={x:10,y:0};
   };
 }
 
 /* PLAYER SIMPLE */
-let tracks = [
-  "media/audio/track1.mp3",
-  "media/audio/track2.mp3"
-];
-
-let audioPlayer = new Audio();
-
 function play() {
-  audioPlayer.src = tracks[current];
-  audioPlayer.play();
+  audio.src = "media/audio/track1.mp3";
+  audio.play();
 }
 
 function pause() {
-  audioPlayer.pause();
+  audio.pause();
 }
 
 function next() {
-  current = (current + 1) % tracks.length;
   play();
 }
 
 function seek(v) {
-  audioPlayer.currentTime = v;
+  audio.currentTime = v;
 }
