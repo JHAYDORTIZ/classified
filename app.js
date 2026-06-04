@@ -1,20 +1,13 @@
 const ADMIN_PASSWORD = "pizza17";
-const USER_PASSWORD = "4tanyatapes";
 
 /* SOUNDS */
 const bootSound = new Audio("sounds/boot.mp3");
 const clickSound = new Audio("sounds/click.mp3");
 const errorSound = new Audio("sounds/error.mp3");
 
-bootSound.volume = 0.7;
-clickSound.volume = 0.25;
-errorSound.volume = 0.5;
-
-/* ENTER LOGIN */
-document.getElementById("password").addEventListener("keydown", function(e) {
-  if (e.key === "Enter") {
-    login();
-  }
+/* LOGIN ENTER */
+document.getElementById("password").addEventListener("keydown", e => {
+  if (e.key === "Enter") login();
 });
 
 /* CLOCK */
@@ -26,13 +19,13 @@ setInterval(() => {
 
 /* LOGIN */
 function login() {
-  const input = document.getElementById("password").value;
+  const v = document.getElementById("password").value;
 
-  if (input === ADMIN_PASSWORD || input === USER_PASSWORD) {
+  if (v === ADMIN_PASSWORD) {
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
 
-    bootSound.play().catch(() => {});
+    bootSound.play().catch(()=>{});
   } else {
     errorSound.play();
     document.getElementById("error").textContent = "ACCESS DENIED";
@@ -40,7 +33,7 @@ function login() {
 }
 
 /* CLICK SOUND */
-document.addEventListener("click", (e) => {
+document.addEventListener("click", e => {
   if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
     clickSound.currentTime = 0;
     clickSound.play();
@@ -52,75 +45,76 @@ function openWindow(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
-function closeWindow(id) {
-  document.getElementById(id).classList.add("hidden");
-}
-
-/* SEARCH (clicable) */
-function searchFiles() {
-  const q = document.getElementById("search").value.toLowerCase();
-  const box = document.getElementById("searchResults");
-  const win = document.getElementById("searchWindow");
-
-  let results = [];
-
-  document.querySelectorAll(".icon").forEach(i => {
-    if (i.textContent.toLowerCase().includes(q)) {
-      results.push(i.textContent);
-    }
-  });
-
-  if (!q) {
-    win.classList.add("hidden");
-    return;
-  }
-
-  win.classList.remove("hidden");
-
-  box.innerHTML = results.length
-    ? results.map(r => `<p onclick="openFromSearch('${r}')">${r}</p>`).join("")
-    : "<p>No results found</p>";
-}
-
-function openFromSearch(name) {
-  const map = {
-    "📄 notes.txt": "notes",
-    "📁 audio": "audio",
-    "📁 videos": "video",
-    "📁 images": "images",
-    "🐍 snake.exe": "snake"
-  };
-
-  const id = map[name];
-  if (id) openWindow(id);
-}
-
 /* DRAG WINDOWS */
-let drag = null;
+let dragWin = null;
 let offX = 0;
 let offY = 0;
 
-document.addEventListener("mousedown", (e) => {
+document.addEventListener("mousedown", e => {
   if (e.target.classList.contains("titlebar")) {
-    drag = e.target.parentElement;
+    dragWin = e.target.parentElement;
     offX = e.offsetX;
     offY = e.offsetY;
   }
 });
 
-document.addEventListener("mousemove", (e) => {
-  if (drag) {
-    drag.style.left = (e.pageX - offX) + "px";
-    drag.style.top = (e.pageY - offY) + "px";
+document.addEventListener("mousemove", e => {
+  if (dragWin) {
+    dragWin.style.left = (e.pageX - offX) + "px";
+    dragWin.style.top = (e.pageY - offY) + "px";
   }
 });
 
-document.addEventListener("mouseup", () => {
-  drag = null;
+document.addEventListener("mouseup", () => dragWin = null);
+
+/* DRAG ICONOS */
+let dragIcon = null;
+let iconOffsetX = 0;
+let iconOffsetY = 0;
+
+document.querySelectorAll(".icon").forEach(icon => {
+
+  icon.addEventListener("mousedown", e => {
+    dragIcon = icon;
+    iconOffsetX = e.offsetX;
+    iconOffsetY = e.offsetY;
+  });
+
 });
 
+document.addEventListener("mousemove", e => {
+  if (dragIcon) {
+    dragIcon.style.left = (e.pageX - iconOffsetX) + "px";
+    dragIcon.style.top = (e.pageY - iconOffsetY) + "px";
+  }
+});
+
+document.addEventListener("mouseup", () => dragIcon = null);
+
+/* SEARCH */
+function searchFiles() {
+  const q = document.getElementById("search").value.toLowerCase();
+  const box = document.getElementById("searchResults");
+  const win = document.getElementById("searchWindow");
+
+  let res = [];
+
+  document.querySelectorAll(".icon").forEach(i => {
+    if (i.textContent.toLowerCase().includes(q)) {
+      res.push(i.textContent);
+    }
+  });
+
+  if (!q) return win.classList.add("hidden");
+
+  win.classList.remove("hidden");
+  box.innerHTML = res.length
+    ? res.map(r => `<p>${r}</p>`).join("")
+    : "<p>No results found</p>";
+}
+
 /* SNAKE */
-let snake, dir, food, ctx, loop, running = false;
+let snake, dir, food, ctx, loop, running=false;
 
 function startSnake() {
   if (running) return;
@@ -129,9 +123,9 @@ function startSnake() {
   const c = document.getElementById("game");
   ctx = c.getContext("2d");
 
-  snake = [{ x: 5, y: 5 }];
-  dir = { x: 1, y: 0 };
-  food = { x: 10, y: 10 };
+  snake = [{x:5,y:5}];
+  dir = {x:1,y:0};
+  food = {x:10,y:10};
 
   document.addEventListener("keydown", move);
 
@@ -140,42 +134,34 @@ function startSnake() {
 }
 
 function game() {
-  let head = {
-    x: snake[0].x + dir.x,
-    y: snake[0].y + dir.y
-  };
+  let h = {x:snake[0].x+dir.x, y:snake[0].y+dir.y};
 
-  if (head.x < 0 || head.y < 0 || head.x > 19 || head.y > 19) {
-    running = false;
+  if (h.x<0||h.y<0||h.x>19||h.y>19){
+    running=false;
     clearInterval(loop);
     alert("TRY AGAIN");
     return;
   }
 
-  snake.unshift(head);
+  snake.unshift(h);
 
-  if (head.x === food.x && head.y === food.y) {
-    food = {
-      x: Math.floor(Math.random() * 20),
-      y: Math.floor(Math.random() * 20)
-    };
-  } else {
-    snake.pop();
-  }
+  if (h.x===food.x && h.y===food.y){
+    food={x:Math.floor(Math.random()*20), y:Math.floor(Math.random()*20)};
+  } else snake.pop();
 
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, 300, 300);
+  ctx.fillStyle="black";
+  ctx.fillRect(0,0,300,300);
 
-  ctx.fillStyle = "green";
-  snake.forEach(s => ctx.fillRect(s.x * 15, s.y * 15, 14, 14));
+  ctx.fillStyle="green";
+  snake.forEach(s=>ctx.fillRect(s.x*15,s.y*15,14,14));
 
-  ctx.fillStyle = "red";
-  ctx.fillRect(food.x * 15, food.y * 15, 14, 14);
+  ctx.fillStyle="red";
+  ctx.fillRect(food.x*15,food.y*15,14,14);
 }
 
-function move(e) {
-  if (e.key === "ArrowUp") dir = { x: 0, y: -1 };
-  if (e.key === "ArrowDown") dir = { x: 0, y: 1 };
-  if (e.key === "ArrowLeft") dir = { x: -1, y: 0 };
-  if (e.key === "ArrowRight") dir = { x: 1, y: 0 };
+function move(e){
+  if (e.key==="ArrowUp") dir={x:0,y:-1};
+  if (e.key==="ArrowDown") dir={x:0,y:1};
+  if (e.key==="ArrowLeft") dir={x:-1,y:0};
+  if (e.key==="ArrowRight") dir={x:1,y:0};
 }
