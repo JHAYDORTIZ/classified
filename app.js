@@ -26,7 +26,7 @@ function renderFolder(folderName) {
 
   const files = fileSystem.filter(f => {
     const parts = f.split("/");
-    return parts.length >= 3 && parts[1] === folderName;
+return f.includes("/" + folderName + "/");
   });
 
   content.innerHTML = files.length
