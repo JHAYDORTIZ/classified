@@ -1,24 +1,29 @@
 body {
   margin: 0;
-  font-family: monospace;
-  background: #0b0b10;
-  color: #ddd;
+  font-family: Tahoma, sans-serif;
 }
 
 /* LOGIN */
 .login {
+  height: 100vh;
   display: flex;
   justify-content: center;
-  margin-top: 120px;
+  align-items: center;
+  background: url("assets/backgrounds/login.jpg") center/cover no-repeat;
 }
 
 .login-box {
-  background: #111;
+  background: rgba(255,255,255,0.9);
   padding: 20px;
-  border: 1px solid #333;
+  border: 2px solid #0a246a;
 }
 
 /* DESKTOP */
+#desktop {
+  height: 100vh;
+  background: url("assets/backgrounds/desktop.jpg") center/cover no-repeat;
+}
+
 .desktop {
   display: flex;
   gap: 20px;
@@ -28,13 +33,9 @@ body {
 .icon {
   width: 100px;
   padding: 10px;
-  background: #111;
-  border: 1px solid #333;
+  background: #ece9d8;
+  border: 2px solid #0a246a;
   cursor: pointer;
-}
-
-.icon:active {
-  transform: scale(0.95);
 }
 
 /* TASKBAR */
@@ -42,23 +43,29 @@ body {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background: #111;
-  padding: 5px;
+  background: #245edb;
+  color: white;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #333;
+  padding: 4px;
 }
 
 .taskbar input {
   width: 200px;
 }
 
+#clock {
+  min-width: 80px;
+  text-align: right;
+  padding-right: 10px;
+}
+
 /* WINDOWS */
 .window {
   position: absolute;
-  width: 300px;
-  background: #111;
-  border: 1px solid #333;
+  width: 320px;
+  background: #ece9d8;
+  border: 2px solid #0a246a;
 }
 
 .hidden {
@@ -66,8 +73,10 @@ body {
 }
 
 .titlebar {
-  background: #1a1a1a;
-  padding: 5px;
+  background: linear-gradient(to right, #0058e6, #4f8ff7);
+  color: white;
+  padding: 4px;
+  font-weight: bold;
 }
 
 .content {
@@ -78,6 +87,4 @@ body {
 textarea {
   width: 100%;
   height: 100px;
-  background: black;
-  color: white;
 }
