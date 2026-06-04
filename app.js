@@ -1,10 +1,17 @@
-
 let isAdmin = false;
 let currentUser = null;
 
 /* SOUNDS */
 const boot = new Audio("sounds/boot.mp3");
 const error = new Audio("sounds/error.mp3");
+
+const clickSound = new Audio("sounds/click.mp3");
+clickSound.volume = 0.5;
+
+function playClick(){
+  clickSound.currentTime = 0;
+  clickSound.play().catch(()=>{});
+}
 
 /* LOGIN */
 document.getElementById("loginBtn").addEventListener("click", login);
@@ -41,19 +48,8 @@ setInterval(()=>{
 
 /* WINDOWS */
 function openWindow(id){
-
   playClick();
-
   document.getElementById(id).classList.remove("hidden");
-
-}
-
-const clickSound = new Audio("sounds/click.mp3");
-clickSound.volume = 0.5;
-
-function playClick(){
-  clickSound.currentTime = 0;
-  clickSound.play().catch(()=>{});
 }
 
 function closeWindow(id){
@@ -72,7 +68,7 @@ icons.forEach((i,idx)=>{
   i.style.top=(40+row*180)+"px";
 });
 
-/* SEARCH (ABRE WINDOWS) */
+/* SEARCH */
 function searchFiles(){
   const q=document.getElementById("search").value.toLowerCase();
   const w=document.getElementById("searchWindow");
@@ -119,13 +115,9 @@ let current=0;
 let audio=new Audio();
 
 function openPlayer(){
-
   playClick();
-
   document.getElementById("player").classList.remove("hidden");
-
   renderPlaylist();
-
 }
 
 function renderPlaylist(){
@@ -161,8 +153,8 @@ function seek(sec){
 function setTime(v){
   audio.currentTime=(v/100)*audio.duration;
 }
-/* DRAG WINDOWS */
 
+/* DRAG WINDOWS */
 let dragWindow = null;
 let offsetX = 0;
 let offsetY = 0;
@@ -170,7 +162,6 @@ let offsetY = 0;
 document.addEventListener("mousedown",(e)=>{
 
   const bar = e.target.closest(".titlebar");
-
   if(!bar) return;
 
   dragWindow = bar.parentElement;
@@ -191,16 +182,13 @@ document.addEventListener("mousemove",(e)=>{
 
   dragWindow.style.top =
     (e.clientY - offsetY) + "px";
-
 });
 
 document.addEventListener("mouseup",()=>{
-
   dragWindow = null;
-
 });
-/* SNAKE */
 
+/* SNAKE */
 let snakeInterval;
 
 function startSnake(){
@@ -212,10 +200,7 @@ function startSnake(){
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
 
-  let snake = [
-    {x:15,y:15}
-  ];
-
+  let snake = [{x:15,y:15}];
   let dir = {x:1,y:0};
 
   let food = {
@@ -225,7 +210,8 @@ function startSnake(){
 
   let score = 0;
 
- function keyHandler(e){
+  /* RESET TECLADO */
+  document.onkeydown = (e)=>{
 
     if(e.key==="ArrowUp" && dir.y!==1)
       dir={x:0,y:-1};
@@ -284,34 +270,17 @@ function startSnake(){
 
     ctx.clearRect(0,0,300,300);
 
-    /* comida */
     ctx.fillStyle="red";
-    ctx.fillRect(
-      food.x*10,
-      food.y*10,
-      10,
-      10
-    );
+    ctx.fillRect(food.x*10, food.y*10, 10, 10);
 
-    /* snake */
     ctx.fillStyle="lime";
 
     snake.forEach(part=>{
-
-      ctx.fillRect(
-        part.x*10,
-        part.y*10,
-        10,
-        10
-      );
-
+      ctx.fillRect(part.x*10, part.y*10, 10, 10);
     });
 
-    /* score */
     ctx.fillStyle="white";
-    ctx.font="14px Arial";
     ctx.fillText("Score: "+score,10,20);
 
   },120);
-
 }
