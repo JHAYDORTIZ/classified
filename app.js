@@ -63,7 +63,7 @@ function login() {
 
     document.getElementById("login").style.display="none";
     document.getElementById("desktop").classList.remove("hidden");
-
+renderDesktop();
     boot.play().catch(()=>{});
   }
   else {
