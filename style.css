@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  background: radial-gradient(#0b0b12, #050508);
+  font-family: monospace;
+  color: #cfcfcf;
+}
+
+/* LOGIN */
+.login-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.window {
+  width: 360px;
+  background: linear-gradient(#14141a, #0d0d12);
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.titlebar {
+  background: #1a1a22;
+  padding: 8px;
+  font-size: 12px;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.content {
+  padding: 15px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  background: #000;
+  border: 1px solid #333;
+  color: white;
+  margin-bottom: 10px;
+}
+
+button {
+  background: #1c1c24;
+  color: white;
+  border: 1px solid #333;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2a2a35;
+}
+
+.error {
+  color: #ff4d4d;
+}
+
+/* DESKTOP */
+.desktop {
+  display: flex;
+  gap: 25px;
+  padding: 40px;
+}
+
+.icon {
+  width: 110px;
+  padding: 12px;
+  background: rgba(20,20,30,0.6);
+  border: 1px solid #2a2a2a;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.icon:hover {
+  background: rgba(40,40,60,0.8);
+  transform: translateY(-2px);
+}
+
+/* TASKBAR */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #0d0d12;
+  border-top: 1px solid #2a2a2a;
+  padding: 6px;
+  font-size: 12px;
+}
+
+/* WINDOWS */
+.popup {
+  position: absolute;
+  top: 120px;
+  left: 120px;
+  width: 420px;
+  background: #0f0f14;
+  border: 1px solid #333;
+  box-shadow: 0 0 30px rgba(0,0,0,0.9);
+  display: none;
+}
