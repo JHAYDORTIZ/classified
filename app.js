@@ -1,25 +1,23 @@
 const PASSWORD = "4tanyatapes";
 
-document.getElementById("enterBtn").addEventListener("click", login);
-
+/* LOGIN */
 function login() {
-
   const value = document.getElementById("password").value;
+  const error = document.getElementById("error");
 
   if (value === PASSWORD) {
-
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").style.display = "block";
-
   } else {
-    document.getElementById("error").textContent = "ACCESS DENIED";
+    error.textContent = "ACCESS DENIED";
   }
 }
 
+/* WINDOWS */
 function openWindow(id) {
-  const el = document.getElementById(id);
-  el.style.display = "block";
-  el.style.zIndex = 999;
+  const win = document.getElementById(id);
+  win.style.display = "block";
+  win.style.zIndex = 999;
 }
 
 function closeWindow(id) {
