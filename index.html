@@ -30,81 +30,86 @@
   <!-- ICONOS -->
   <div id="desktopArea">
 
-    <div class="icon" onclick="openWindow('audio')">
-      📁<span>audios</span>
-    </div>
-
-    <div class="icon" onclick="openWindow('video')">
-      📁<span>videos</span>
-    </div>
-
-    <div class="icon" onclick="openWindow('images')">
+    <div class="icon" data-id="images" onclick="openWindow('images')">
       🖼️<span>imágenes</span>
     </div>
 
-    <div class="icon" onclick="openWindow('notes')">
+    <div class="icon" data-id="video" onclick="openWindow('video')">
+      📁<span>videos</span>
+    </div>
+
+    <div class="icon" data-id="notes" onclick="openWindow('notes')">
       📄<span>texto</span>
     </div>
 
-    <div class="icon" onclick="openWindow('snake')">
+    <div class="icon" data-id="unknown" onclick="openWindow('unknown')">
+      📁<span>unknown</span>
+    </div>
+
+    <div class="icon" data-id="snake" onclick="openWindow('snake')">
       🐍<span>snake</span>
+    </div>
+
+    <div class="icon" data-id="recycle" onclick="openWindow('recycle')">
+      🗑️<span>Papelera</span>
+    </div>
+
+    <div class="icon" onclick="openPlayer()">
+      🎵<span>audios</span>
     </div>
 
   </div>
 
   <!-- WINDOWS -->
 
-  <div id="audio" class="window hidden">
-    <div class="titlebar">
-      audios
-      <div class="close-btn" onclick="closeWindow('audio')">✖</div>
-    </div>
+  <div id="images" class="window hidden">
+    <div class="titlebar">imágenes <div class="close-btn" onclick="closeWindow('images')">✖</div></div>
     <div class="content">No files</div>
   </div>
 
   <div id="video" class="window hidden">
-    <div class="titlebar">
-      videos
-      <div class="close-btn" onclick="closeWindow('video')">✖</div>
-    </div>
-    <div class="content">No files</div>
-  </div>
-
-  <div id="images" class="window hidden">
-    <div class="titlebar">
-      imágenes
-      <div class="close-btn" onclick="closeWindow('images')">✖</div>
-    </div>
+    <div class="titlebar">videos <div class="close-btn" onclick="closeWindow('video')">✖</div></div>
     <div class="content">No files</div>
   </div>
 
   <div id="notes" class="window hidden">
-    <div class="titlebar">
-      texto
-      <div class="close-btn" onclick="closeWindow('notes')">✖</div>
-    </div>
-    <div class="content">
-      <textarea>trap villian exclusive</textarea>
-    </div>
+    <div class="titlebar">texto <div class="close-btn" onclick="closeWindow('notes')">✖</div></div>
+    <div class="content"><textarea>trap villian exclusive</textarea></div>
+  </div>
+
+  <div id="unknown" class="window hidden">
+    <div class="titlebar">unknown <div class="close-btn" onclick="closeWindow('unknown')">✖</div></div>
+    <div class="content">hidden files</div>
+  </div>
+
+  <div id="recycle" class="window hidden">
+    <div class="titlebar">Papelera de reciclaje <div class="close-btn" onclick="closeWindow('recycle')">✖</div></div>
+    <div class="content">empty</div>
   </div>
 
   <div id="snake" class="window hidden">
-    <div class="titlebar">
-      snake.exe
-      <div class="close-btn" onclick="closeWindow('snake')">✖</div>
-    </div>
+    <div class="titlebar">snake.exe <div class="close-btn" onclick="closeWindow('snake')">✖</div></div>
     <div class="content">
       <canvas id="game" width="300" height="300"></canvas>
       <button onclick="startSnake()">START</button>
     </div>
   </div>
 
+  <!-- AUDIO PLAYER -->
+  <div id="player" class="window hidden">
+    <div class="titlebar">reproductor <div class="close-btn" onclick="closeWindow('player')">✖</div></div>
+    <div class="content">
+      <ul id="playlist"></ul>
+      <button onclick="play()">▶</button>
+      <button onclick="pause()">⏸</button>
+      <button onclick="next()">⏭</button>
+      <button onclick="toggleLoop()">🔁</button>
+    </div>
+  </div>
+
   <!-- SEARCH -->
   <div id="searchWindow" class="window hidden">
-    <div class="titlebar">
-      search
-      <div class="close-btn" onclick="closeWindow('searchWindow')">✖</div>
-    </div>
+    <div class="titlebar">search <div class="close-btn" onclick="closeWindow('searchWindow')">✖</div></div>
     <div id="searchResults" class="content"></div>
   </div>
 
