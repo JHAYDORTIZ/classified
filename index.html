@@ -2,10 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>ARCHIVE SYSTEM</title>
+<title>CLASSIFIED SYSTEM</title>
 <link rel="stylesheet" href="style.css">
 
-<!-- Cursor -->
 <style>
 body {
   cursor: url("assets/cursor.cur"), default;
@@ -16,14 +15,12 @@ body {
 <body>
 
 <!-- LOGIN -->
-<div id="login" class="window center">
-  <div class="titlebar">SYSTEM ACCESS</div>
-
-  <div class="content">
-    <p>ENTER PASSWORD</p>
+<div id="login" class="login">
+  <div class="login-box">
+    <h3>SYSTEM ACCESS</h3>
     <input id="password" type="password" placeholder="password">
     <button onclick="login()">ENTER</button>
-    <p id="error" class="error"></p>
+    <p id="error"></p>
   </div>
 </div>
 
@@ -31,64 +28,66 @@ body {
 <div id="desktop" class="hidden">
 
   <div class="taskbar">
-    ARCHIVE SYSTEM
-    <span id="clock" style="float:right;"></span>
+    <span>CLASSIFIED OS</span>
+
+    <input id="search" placeholder="Search..." oninput="searchFiles()">
+
+    <span id="clock"></span>
   </div>
 
   <div class="desktop">
 
-    <div class="icon" onclick="openWindow('txtWindow')">📄 notes.txt</div>
-    <div class="icon" onclick="openWindow('musicWindow')">📁 audio</div>
-    <div class="icon" onclick="openWindow('videoWindow')">📁 videos</div>
-    <div class="icon" onclick="openWindow('photoWindow')">📁 images</div>
-    <div class="icon" onclick="openWindow('snakeWindow')">🐍 snake.exe</div>
+    <div class="icon" onclick="openWindow('notes')">📄 notes.txt</div>
+    <div class="icon" onclick="openWindow('audio')">📁 audio</div>
+    <div class="icon" onclick="openWindow('video')">📁 videos</div>
+    <div class="icon" onclick="openWindow('images')">📁 images</div>
+    <div class="icon" onclick="openWindow('snake')">🐍 snake.exe</div>
 
   </div>
 
   <!-- NOTES -->
-  <div id="txtWindow" class="window hidden">
+  <div id="notes" class="window hidden">
     <div class="titlebar">notes.txt</div>
     <div class="content">
       <textarea>trap villian exclusive</textarea>
-      <button onclick="closeWindow('txtWindow')">CLOSE</button>
+      <button onclick="closeWindow('notes')">CLOSE</button>
     </div>
   </div>
 
   <!-- AUDIO -->
-  <div id="musicWindow" class="window hidden">
+  <div id="audio" class="window hidden">
     <div class="titlebar">audio</div>
     <div class="content">
-      <p>no files yet</p>
-      <button onclick="closeWindow('musicWindow')">CLOSE</button>
+      <p>no files</p>
+      <button onclick="closeWindow('audio')">CLOSE</button>
     </div>
   </div>
 
   <!-- VIDEO -->
-  <div id="videoWindow" class="window hidden">
+  <div id="video" class="window hidden">
     <div class="titlebar">videos</div>
     <div class="content">
-      <p>no files yet</p>
-      <button onclick="closeWindow('videoWindow')">CLOSE</button>
+      <p>no files</p>
+      <button onclick="closeWindow('video')">CLOSE</button>
     </div>
   </div>
 
   <!-- IMAGES -->
-  <div id="photoWindow" class="window hidden">
+  <div id="images" class="window hidden">
     <div class="titlebar">images</div>
     <div class="content">
-      <p>no files yet</p>
-      <button onclick="closeWindow('photoWindow')">CLOSE</button>
+      <p>no files</p>
+      <button onclick="closeWindow('images')">CLOSE</button>
     </div>
   </div>
 
   <!-- SNAKE -->
-  <div id="snakeWindow" class="window hidden">
+  <div id="snake" class="window hidden">
     <div class="titlebar">snake.exe</div>
     <div class="content">
-      <canvas id="snakeCanvas" width="300" height="300"></canvas>
-      <br>
+      <canvas id="game" width="300" height="300"></canvas>
       <button onclick="startSnake()">START</button>
-      <button onclick="closeWindow('snakeWindow')">CLOSE</button>
+      <button onclick="closeWindow('snake')">CLOSE</button>
     </div>
   </div>
 
