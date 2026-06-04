@@ -1,42 +1,114 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: #111;
+  font-family: Tahoma, Arial, sans-serif;
+  background: radial-gradient(circle at top, #1a1f2e, #0b0d12);
   color: white;
 }
 
-/* LOGIN OCUPA TODA LA PANTALLA */
+/* LOGIN */
 .login {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
 }
 
-/* INPUT */
+.panel {
+  width: 320px;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
 input {
-  padding: 8px;
-  width: 200px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #111;
+  border: 1px solid #333;
+  color: white;
 }
 
-/* BUTTON */
 button {
-  padding: 8px;
-  width: 200px;
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: #2b6cff;
+  border: none;
+  color: white;
   cursor: pointer;
+}
+
+/* DESKTOP */
+#desktop {
+  height: 100vh;
+  position: relative;
+}
+
+/* ICONS */
+.icon {
+  position: absolute;
+  width: 150px;
+  padding: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+}
+
+.icon:hover {
+  background: rgba(43,108,255,0.25);
 }
 
 /* WINDOWS */
 .window {
-  background: white;
-  color: black;
-  padding: 10px;
-  margin-top: 20px;
+  position: absolute;
+  top: 120px;
+  left: 200px;
+  width: 380px;
+  background: #161a22;
+  border: 1px solid #2b6cff;
+  display: none;
 }
 
-/* OCULTO */
-.hidden {
-  display: none;
+.bar {
+  background: #2b6cff;
+  padding: 6px;
+  cursor: move;
+  font-size: 12px;
+}
+
+.content {
+  padding: 10px;
+}
+
+button {
+  margin: 10px;
+}
+
+/* TASKBAR */
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 36px;
+  background: #0b0d12;
+  border-top: 1px solid #2b6cff;
+  display: flex;
+  align-items: center;
+}
+
+.start {
+  background: #2b6cff;
+  padding: 8px 14px;
+  font-weight: bold;
+}
+
+.title {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.clock {
+  padding-right: 10px;
 }
