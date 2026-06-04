@@ -2,86 +2,94 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARCHIVE OS v2</title>
+<title>ARCHIVE SYSTEM</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Cursor -->
+<style>
+body {
+  cursor: url("assets/cursor.cur"), default;
+}
+</style>
 </head>
 
 <body>
 
 <!-- LOGIN -->
-<div id="login" class="login">
+<div id="login" class="window center">
+  <div class="titlebar">SYSTEM ACCESS</div>
 
-  <div class="panel">
-    <h1>ARCHIVE OS</h1>
-    <p>secure access terminal</p>
-
-    <input id="password" type="password" placeholder="access key">
-    <button onclick="login()">ENTER SYSTEM</button>
-
-    <p id="error"></p>
+  <div class="content">
+    <p>ENTER PASSWORD</p>
+    <input id="password" type="password" placeholder="password">
+    <button onclick="login()">ENTER</button>
+    <p id="error" class="error"></p>
   </div>
-
 </div>
 
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
-  <!-- ICONOS -->
-  <div class="icon" style="top:60px;left:40px;" ondblclick="openWindow('notes')">🗂 archive_notes</div>
-  <div class="icon" style="top:140px;left:40px;" ondblclick="openWindow('audio')">🎧 sound_core</div>
-  <div class="icon" style="top:220px;left:40px;" ondblclick="openWindow('video')">🎬 visual_logs</div>
-  <div class="icon" style="top:300px;left:40px;" ondblclick="openWindow('images')">🖼 memory_dump</div>
-
-  <!-- WINDOWS -->
-
-  <div id="notes" class="window">
-    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
-      archive_notes.txt
-    </div>
-    <div class="content">
-      <p>trap villian exclusive</p>
-    </div>
-    <button onclick="closeWindow('notes')">close</button>
-  </div>
-
-  <div id="audio" class="window">
-    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
-      sound_core
-    </div>
-    <div class="content">
-      <div>session_01.mp3</div>
-      <div>session_02.mp3</div>
-    </div>
-    <button onclick="closeWindow('audio')">close</button>
-  </div>
-
-  <div id="video" class="window">
-    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
-      visual_logs
-    </div>
-    <div class="content">
-      <div>clip_01.mp4</div>
-    </div>
-    <button onclick="closeWindow('video')">close</button>
-  </div>
-
-  <div id="images" class="window">
-    <div class="bar" onmousedown="startDrag(event, this.parentElement)">
-      memory_dump
-    </div>
-    <div class="content">
-      <div>frame_01.jpg</div>
-      <div>frame_02.jpg</div>
-    </div>
-    <button onclick="closeWindow('images')">close</button>
-  </div>
-
-  <!-- TASKBAR -->
   <div class="taskbar">
-    <div class="start">AOS</div>
-    <div class="title">ARCHIVE SYSTEM ONLINE</div>
-    <div class="clock" id="clock">00:00</div>
+    ARCHIVE SYSTEM
+    <span id="clock" style="float:right;"></span>
+  </div>
+
+  <div class="desktop">
+
+    <div class="icon" onclick="openWindow('txtWindow')">📄 notes.txt</div>
+    <div class="icon" onclick="openWindow('musicWindow')">📁 audio</div>
+    <div class="icon" onclick="openWindow('videoWindow')">📁 videos</div>
+    <div class="icon" onclick="openWindow('photoWindow')">📁 images</div>
+    <div class="icon" onclick="openWindow('snakeWindow')">🐍 snake.exe</div>
+
+  </div>
+
+  <!-- NOTES -->
+  <div id="txtWindow" class="window hidden">
+    <div class="titlebar">notes.txt</div>
+    <div class="content">
+      <textarea>trap villian exclusive</textarea>
+      <button onclick="closeWindow('txtWindow')">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- AUDIO -->
+  <div id="musicWindow" class="window hidden">
+    <div class="titlebar">audio</div>
+    <div class="content">
+      <p>no files yet</p>
+      <button onclick="closeWindow('musicWindow')">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div id="videoWindow" class="window hidden">
+    <div class="titlebar">videos</div>
+    <div class="content">
+      <p>no files yet</p>
+      <button onclick="closeWindow('videoWindow')">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- IMAGES -->
+  <div id="photoWindow" class="window hidden">
+    <div class="titlebar">images</div>
+    <div class="content">
+      <p>no files yet</p>
+      <button onclick="closeWindow('photoWindow')">CLOSE</button>
+    </div>
+  </div>
+
+  <!-- SNAKE -->
+  <div id="snakeWindow" class="window hidden">
+    <div class="titlebar">snake.exe</div>
+    <div class="content">
+      <canvas id="snakeCanvas" width="300" height="300"></canvas>
+      <br>
+      <button onclick="startSnake()">START</button>
+      <button onclick="closeWindow('snakeWindow')">CLOSE</button>
+    </div>
   </div>
 
 </div>
