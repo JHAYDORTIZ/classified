@@ -4,7 +4,6 @@ let currentUser = null;
 
 /* SOUNDS */
 const boot = new Audio("sounds/boot.mp3");
-const click = new Audio("sounds/click.mp3");
 const error = new Audio("sounds/error.mp3");
 
 /* LOGIN */
@@ -45,8 +44,14 @@ function openWindow(id){
   document.getElementById(id).classList.remove("hidden");
 }
 
-function closeWindow(id){
+function playClick(){
+  const click = new Audio("sounds/click.mp3");
+  click.volume = 0.5;
   click.play().catch(()=>{});
+}
+
+function closeWindow(id){
+  playClick();
   document.getElementById(id).classList.add("hidden");
 }
 
@@ -144,4 +149,108 @@ function seek(sec){
 
 function setTime(v){
   audio.currentTime=(v/100)*audio.duration;
+}
+/* DRAG WINDOWS */
+
+let dragWindow = null;
+let offsetX = 0;
+let offsetY = 0;
+
+document.addEventListener("mousedown",(e)=>{
+
+  const bar = e.target.closest(".titlebar");
+
+  if(!bar) return;
+
+  dragWindow = bar.parentElement;
+
+  const rect = dragWindow.getBoundingClientRect();
+
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
+
+});
+
+document.addEventListener("mousemove",(e)=>{
+
+  if(!dragWindow) return;
+
+  dragWindow.style.left =
+    (e.clientX - offsetX) + "px";
+
+  dragWindow.style.top =
+    (e.clientY - offsetY) + "px";
+
+});
+
+document.addEventListener("mouseup",()=>{
+
+  dragWindow = null;
+
+});
+/* SNAKE */
+
+function startSnake(){
+
+  const canvas =
+    document.getElementById("game");
+
+  const ctx =
+    canvas.getContext("2d");
+
+  let snake = [
+    {x:150,y:150}
+  ];
+
+  let dir = {
+    x:10,
+    y:0
+  };
+
+  document.onkeydown = (e)=>{
+
+    if(e.key==="ArrowUp")
+      dir={x:0,y:-10};
+
+    if(e.key==="ArrowDown")
+      dir={x:0,y:10};
+
+    if(e.key==="ArrowLeft")
+      dir={x:-10,y:0};
+
+    if(e.key==="ArrowRight")
+      dir={x:10,y:0};
+
+  };
+
+  function loop(){
+
+    ctx.clearRect(0,0,300,300);
+
+    snake.unshift({
+      x:snake[0].x+dir.x,
+      y:snake[0].y+dir.y
+    });
+
+    snake.pop();
+
+    snake.forEach(part=>{
+
+      ctx.fillStyle="lime";
+
+      ctx.fillRect(
+        part.x,
+        part.y,
+        10,
+        10
+      );
+
+    });
+
+    requestAnimationFrame(loop);
+
+  }
+
+  loop();
+
 }
