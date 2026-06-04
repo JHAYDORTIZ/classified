@@ -11,78 +11,87 @@
 
 <!-- LOGIN -->
 <div id="login" class="login-screen">
-  <div class="window">
+
+  <div class="window login-box">
     <div class="titlebar">SYSTEM ACCESS</div>
 
     <div class="content">
-      <p>ENTER PASSWORD</p>
-
       <input id="password" type="password" placeholder="password">
-
       <button onclick="login()">ENTER</button>
-
-      <p id="error" class="error"></p>
+      <p id="error"></p>
     </div>
+
   </div>
+
 </div>
 
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
+  <!-- ICONS (Windows desktop style vertical) -->
   <div class="desktop">
 
-    <div class="icon" ondblclick="openWindow('txtWindow')">📄 notes.txt</div>
-    <div class="icon" ondblclick="openWindow('musicWindow')">📁 AUDIO</div>
-    <div class="icon" ondblclick="openWindow('videoWindow')">📁 VIDEOS</div>
-    <div class="icon" ondblclick="openWindow('photoWindow')">📁 PHOTOS</div>
+    <div class="icon" style="top:40px;left:40px;" draggable="true"
+         ondblclick="openWindow('txtWindow')">
+      📄 notes.txt
+    </div>
+
+    <div class="icon" style="top:120px;left:40px;" draggable="true"
+         ondblclick="openWindow('musicWindow')">
+      📁 audio
+    </div>
+
+    <div class="icon" style="top:200px;left:40px;" draggable="true"
+         ondblclick="openWindow('videoWindow')">
+      📁 videos
+    </div>
+
+    <div class="icon" style="top:280px;left:40px;" draggable="true"
+         ondblclick="openWindow('photoWindow')">
+      📁 images
+    </div>
 
   </div>
 
+  <!-- TASKBAR -->
   <div class="taskbar">CLASSIFIED SYSTEM</div>
 
-  <!-- NOTES -->
+  <!-- WINDOWS -->
+
   <div id="txtWindow" class="window popup">
     <div class="titlebar">notes.txt</div>
-    <div class="content">
-      <div class="file">trap villian exclusive</div>
-      <button onclick="closeWindow('txtWindow')">CLOSE</button>
-    </div>
+    <div class="content">trap villian exclusive</div>
+    <button onclick="closeWindow('txtWindow')">CLOSE</button>
   </div>
 
-  <!-- AUDIO -->
   <div id="musicWindow" class="window popup">
-    <div class="titlebar">audio archive</div>
+    <div class="titlebar">audio</div>
     <div class="content">
-      <div class="file">track01.mp3</div>
-      <div class="file">track02.mp3</div>
-      <div class="file">unreleased.mp3</div>
-      <button onclick="closeWindow('musicWindow')">CLOSE</button>
+      <div>track1.mp3</div>
+      <div>track2.mp3</div>
     </div>
+    <button onclick="closeWindow('musicWindow')">CLOSE</button>
   </div>
 
-  <!-- VIDEO -->
   <div id="videoWindow" class="window popup">
-    <div class="titlebar">video archive</div>
+    <div class="titlebar">videos</div>
     <div class="content">
-      <div class="file">clip01.mp4</div>
-      <div class="file">clip02.mp4</div>
-      <button onclick="closeWindow('videoWindow')">CLOSE</button>
+      <div>clip1.mp4</div>
     </div>
+    <button onclick="closeWindow('videoWindow')">CLOSE</button>
   </div>
 
-  <!-- PHOTO -->
   <div id="photoWindow" class="window popup">
-    <div class="titlebar">photo archive</div>
+    <div class="titlebar">images</div>
     <div class="content">
-      <div class="file">photo01.jpg</div>
-      <div class="file">photo02.jpg</div>
-      <button onclick="closeWindow('photoWindow')">CLOSE</button>
+      <img src="media/photo1.jpg" width="120">
+      <img src="media/photo2.jpg" width="120">
     </div>
+    <button onclick="closeWindow('photoWindow')">CLOSE</button>
   </div>
 
 </div>
 
 <script src="app.js"></script>
-
 </body>
 </html>
