@@ -9,53 +9,113 @@
 <body>
 
 <!-- LOGIN -->
-<div id="login">
-  <input id="password" type="password" placeholder="password">
-  <button onclick="login()">ENTER</button>
-  <p id="error"></p>
+<div id="login" class="login">
+  <div class="login-box">
+    <h3>SYSTEM ACCESS</h3>
+
+    <input id="password" type="password" placeholder="password">
+    <button id="loginBtn">ENTER</button>
+
+    <p id="error"></p>
+  </div>
 </div>
 
 <!-- DESKTOP -->
 <div id="desktop" class="hidden">
 
-  <div id="taskbar">
+  <!-- TASKBAR -->
+  <div class="taskbar">
     <span>CLASSIFIED OS</span>
-    <input id="search" oninput="search()" placeholder="search">
+
+    <input id="search" placeholder="Search..." oninput="searchFiles()">
+
     <span id="clock"></span>
   </div>
 
-  <div id="icons">
+  <!-- ICONOS -->
+  <div id="desktopArea">
 
-    <div onclick="openWin('images')">🖼 imágenes</div>
-    <div onclick="openWin('video')">📁 videos</div>
-    <div onclick="openWin('notes')">📄 texto</div>
-    <div onclick="openWin('unknown')">📁 unknown</div>
-    <div onclick="openWin('snake')">🐍 snake</div>
-    <div onclick="openWin('recycle')">🗑 papelera</div>
-    <div onclick="openWin('player')">🎵 reproductor</div>
+    <div class="icon" onclick="openWindow('images')">🖼️<span>imágenes</span></div>
+    <div class="icon" onclick="openWindow('video')">📁<span>videos</span></div>
+    <div class="icon" onclick="openWindow('notes')">📄<span>texto</span></div>
+    <div class="icon" onclick="openWindow('unknown')">📁<span>unknown</span></div>
+    <div class="icon" onclick="openWindow('snake')">🐍<span>snake</span></div>
+    <div class="icon" onclick="openWindow('recycle')">🗑️<span>Papelera de reciclaje</span></div>
+    <div class="icon" onclick="openPlayer()">🎵<span>reproductor</span></div>
 
   </div>
 
   <!-- WINDOWS -->
-  <div id="images" class="win hidden"><div class="bar" onmousedown="drag(this)">imágenes <button onclick="closeWin('images')">X</button></div><div class="content"></div></div>
 
-  <div id="video" class="win hidden"><div class="bar" onmousedown="drag(this)">videos <button onclick="closeWin('video')">X</button></div><div class="content"></div></div>
+  <div id="images" class="window hidden">
+    <div class="titlebar">imágenes <div class="close-btn" onclick="closeWindow('images')">✖</div></div>
+    <div class="content">No files</div>
+  </div>
 
-  <div id="notes" class="win hidden"><div class="bar" onmousedown="drag(this)">texto <button onclick="closeWin('notes')">X</button></div><div class="content"><textarea></textarea></div></div>
+  <div id="video" class="window hidden">
+    <div class="titlebar">videos <div class="close-btn" onclick="closeWindow('video')">✖</div></div>
+    <div class="content">No files</div>
+  </div>
 
-  <div id="unknown" class="win hidden"><div class="bar" onmousedown="drag(this)">unknown <button onclick="closeWin('unknown')">X</button></div><div class="content"></div></div>
-
-  <div id="recycle" class="win hidden"><div class="bar" onmousedown="drag(this)">papelera <button onclick="closeWin('recycle')">X</button></div><div class="content"></div></div>
-
-  <div id="player" class="win hidden">
-    <div class="bar" onmousedown="drag(this)">reproductor <button onclick="closeWin('player')">X</button></div>
+  <div id="notes" class="window hidden">
+    <div class="titlebar">texto <div class="close-btn" onclick="closeWindow('notes')">✖</div></div>
     <div class="content">
-      <ul id="playlist"></ul>
-      <button onclick="play()">play</button>
-      <button onclick="pause()">pause</button>
-      <button onclick="next()">next</button>
-      <input type="range" oninput="seek(this.value)">
+      <textarea>trap villian exclusive</textarea>
     </div>
+  </div>
+
+  <div id="unknown" class="window hidden">
+    <div class="titlebar">unknown <div class="close-btn" onclick="closeWindow('unknown')">✖</div></div>
+    <div class="content">hidden files</div>
+  </div>
+
+  <div id="recycle" class="window hidden">
+    <div class="titlebar">Papelera de reciclaje <div class="close-btn" onclick="closeWindow('recycle')">✖</div></div>
+    <div class="content">empty</div>
+  </div>
+
+  <div id="snake" class="window hidden">
+    <div class="titlebar">snake.exe <div class="close-btn" onclick="closeWindow('snake')">✖</div></div>
+    <div class="content">
+      <canvas id="game" width="300" height="300"></canvas>
+      <button onclick="startSnake()">START</button>
+    </div>
+  </div>
+
+  <!-- REPRODUCTOR -->
+  <div id="player" class="window hidden">
+    <div class="titlebar">reproductor <div class="close-btn" onclick="closeWindow('player')">✖</div></div>
+
+    <div class="content">
+
+      <div style="display:flex; gap:10px;">
+
+        <div style="width:40%;">
+          <ul id="playlist"></ul>
+        </div>
+
+        <div style="width:60%;">
+          <button onclick="play()">▶</button>
+          <button onclick="pause()">⏸</button>
+          <button onclick="seek(-10)">-10s</button>
+          <button onclick="seek(10)">+10s</button>
+          <button onclick="next()">⏭</button>
+
+          <br><br>
+
+          <input type="range" id="seekBar" min="0" max="100"
+                 oninput="setTime(this.value)">
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div id="searchWindow" class="window hidden">
+    <div class="titlebar">search <div class="close-btn" onclick="closeWindow('searchWindow')">✖</div></div>
+    <div id="searchResults" class="content"></div>
   </div>
 
 </div>
