@@ -10,7 +10,7 @@ bootSound.volume = 0.7;
 clickSound.volume = 0.25;
 errorSound.volume = 0.5;
 
-/* ENTER EN LOGIN (TECLADO) */
+/* ENTER LOGIN */
 document.getElementById("password").addEventListener("keydown", function(e) {
   if (e.key === "Enter") {
     login();
@@ -32,7 +32,6 @@ function login() {
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
 
-    // boot SOLO después del login
     bootSound.play().catch(() => {});
   } else {
     errorSound.play();
@@ -57,7 +56,7 @@ function closeWindow(id) {
   document.getElementById(id).classList.add("hidden");
 }
 
-/* SEARCH */
+/* SEARCH (clicable) */
 function searchFiles() {
   const q = document.getElementById("search").value.toLowerCase();
   const box = document.getElementById("searchResults");
@@ -77,15 +76,56 @@ function searchFiles() {
   }
 
   win.classList.remove("hidden");
+
   box.innerHTML = results.length
-    ? results.map(r => `<p>${r}</p>`).join("")
+    ? results.map(r => `<p onclick="openFromSearch('${r}')">${r}</p>`).join("")
     : "<p>No results found</p>";
 }
 
+function openFromSearch(name) {
+  const map = {
+    "📄 notes.txt": "notes",
+    "📁 audio": "audio",
+    "📁 videos": "video",
+    "📁 images": "images",
+    "🐍 snake.exe": "snake"
+  };
+
+  const id = map[name];
+  if (id) openWindow(id);
+}
+
+/* DRAG WINDOWS */
+let drag = null;
+let offX = 0;
+let offY = 0;
+
+document.addEventListener("mousedown", (e) => {
+  if (e.target.classList.contains("titlebar")) {
+    drag = e.target.parentElement;
+    offX = e.offsetX;
+    offY = e.offsetY;
+  }
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (drag) {
+    drag.style.left = (e.pageX - offX) + "px";
+    drag.style.top = (e.pageY - offY) + "px";
+  }
+});
+
+document.addEventListener("mouseup", () => {
+  drag = null;
+});
+
 /* SNAKE */
-let snake, dir, food, ctx, loop;
+let snake, dir, food, ctx, loop, running = false;
 
 function startSnake() {
+  if (running) return;
+  running = true;
+
   const c = document.getElementById("game");
   ctx = c.getContext("2d");
 
@@ -106,9 +146,9 @@ function game() {
   };
 
   if (head.x < 0 || head.y < 0 || head.x > 19 || head.y > 19) {
+    running = false;
     clearInterval(loop);
     alert("TRY AGAIN");
-    startSnake();
     return;
   }
 
