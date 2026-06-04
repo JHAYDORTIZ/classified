@@ -1,147 +1,139 @@
-
-let isAdmin = false;
-let currentUser = null;
-
-/* SOUNDS */
-const boot = new Audio("sounds/boot.mp3");
-const click = new Audio("sounds/click.mp3");
-const error = new Audio("sounds/error.mp3");
+let audio = new Audio();
+let current = 0;
 
 /* LOGIN */
-document.getElementById("loginBtn").addEventListener("click", login);
-
-document.getElementById("password").addEventListener("keydown", e=>{
-  if(e.key==="Enter") login();
-});
-
 function login() {
-  const v = document.getElementById("password").value.trim();
+  const v = document.getElementById("password").value;
 
-  if(v==="pizza17" || v==="4tanyatapes") {
-
-    isAdmin = (v==="pizza17");
-    currentUser = v;
-
-    document.getElementById("login").style.display="none";
+  if (v === "pizza17" || v === "4tanyatapes") {
+    document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
-
-    boot.play().catch(()=>{});
-  }
-  else {
-    error.play();
-    document.getElementById("error").textContent="ACCESS DENIED";
+  } else {
+    document.getElementById("error").innerText = "error";
   }
 }
 
-/* CLOCK */
-setInterval(()=>{
-  const d=new Date();
-  document.getElementById("clock").textContent=
-    d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
-},1000);
-
 /* WINDOWS */
-function openWindow(id){
+function openWin(id) {
   document.getElementById(id).classList.remove("hidden");
 }
 
-function closeWindow(id){
-  click.play().catch(()=>{});
+function closeWin(id) {
+  playClick();
   document.getElementById(id).classList.add("hidden");
 }
 
-/* ICON GRID */
-const icons=document.querySelectorAll(".icon");
+/* CLICK SOUND FIX */
+function playClick() {
+  const c = new Audio("sounds/click.mp3");
+  c.volume = 0.5;
+  c.play();
+}
 
-icons.forEach((i,idx)=>{
-  const col=idx%2;
-  const row=Math.floor(idx/2);
+/* DRAG FIX DEFINITIVO */
+let dragEl = null;
+let offsetX = 0;
+let offsetY = 0;
 
-  i.style.left=(20+col*200)+"px";
-  i.style.top=(40+row*180)+"px";
+document.addEventListener("mousedown", (e) => {
+  const bar = e.target.closest(".bar");
+  if (!bar) return;
+
+  dragEl = bar.parentElement;
+
+  const rect = dragEl.getBoundingClientRect();
+
+  offsetX = e.clientX - rect.left;
+  offsetY = e.clientY - rect.top;
 });
 
-/* SEARCH (ABRE WINDOWS) */
-function searchFiles(){
-  const q=document.getElementById("search").value.toLowerCase();
-  const w=document.getElementById("searchWindow");
-  const box=document.getElementById("searchResults");
+document.addEventListener("mousemove", (e) => {
+  if (!dragEl) return;
 
-  if(!q){w.classList.add("hidden");return;}
+  dragEl.style.left = (e.clientX - offsetX) + "px";
+  dragEl.style.top = (e.clientY - offsetY) + "px";
+});
 
-  w.classList.remove("hidden");
+document.addEventListener("mouseup", () => {
+  dragEl = null;
+});
 
-  let res=[];
+/* CLOCK */
+setInterval(() => {
+  const d = new Date();
+  document.getElementById("clock").innerText =
+    d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+}, 1000);
 
-  document.querySelectorAll(".icon span").forEach(i=>{
-    if(i.textContent.toLowerCase().includes(q)){
-      res.push(i.textContent);
-    }
+/* SEARCH SIMPLE */
+function search() {
+  const q = document.getElementById("search").value.toLowerCase();
+
+  document.querySelectorAll("#icons div").forEach(el => {
+    el.style.display = el.innerText.toLowerCase().includes(q)
+      ? "block"
+      : "none";
   });
-
-  box.innerHTML=res.length
-    ? res.map(r=>`<p onclick="openFromSearch('${r}')">${r}</p>`).join("")
-    : "No results found";
 }
 
-function openFromSearch(name){
-  const map={
-    "imágenes":"images",
-    "videos":"video",
-    "texto":"notes",
-    "unknown":"unknown",
-    "snake":"snake",
-    "papelera de reciclaje":"recycle",
-    "reproductor":"player"
+/* SNAKE FIX */
+function startSnake() {
+  const canvas = document.getElementById("game");
+  const ctx = canvas.getContext("2d");
+
+  let snake = [{ x: 150, y: 150 }];
+  let dir = { x: 10, y: 0 };
+
+  function loop() {
+    ctx.clearRect(0, 0, 300, 300);
+
+    snake.unshift({
+      x: snake[0].x + dir.x,
+      y: snake[0].y + dir.y
+    });
+
+    snake.pop();
+
+    snake.forEach(p => {
+      ctx.fillStyle = "green";
+      ctx.fillRect(p.x, p.y, 10, 10);
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  loop();
+
+  document.onkeydown = (e) => {
+    if (e.key === "ArrowUp") dir = { x: 0, y: -10 };
+    if (e.key === "ArrowDown") dir = { x: 0, y: 10 };
+    if (e.key === "ArrowLeft") dir = { x: -10, y: 0 };
+    if (e.key === "ArrowRight") dir = { x: 10, y: 0 };
   };
-
-  if(map[name]) openWindow(map[name]);
 }
 
-/* REPRODUCTOR */
-let tracks=[
+/* PLAYER SIMPLE */
+let tracks = [
   "media/audio/track1.mp3",
   "media/audio/track2.mp3"
 ];
 
-let current=0;
-let audio=new Audio();
+let audioPlayer = new Audio();
 
-function openPlayer(){
-  document.getElementById("player").classList.remove("hidden");
-  renderPlaylist();
+function play() {
+  audioPlayer.src = tracks[current];
+  audioPlayer.play();
 }
 
-function renderPlaylist(){
-  document.getElementById("playlist").innerHTML=
-    tracks.map((t,i)=>
-      `<li onclick="selectTrack(${i})">${t}</li>`
-    ).join("");
+function pause() {
+  audioPlayer.pause();
 }
 
-function selectTrack(i){
-  current=i;
+function next() {
+  current = (current + 1) % tracks.length;
   play();
 }
 
-function play(){
-  audio.src=tracks[current];
-  audio.play();
-}
-
-function pause(){
-  audio.pause();
-}
-
-function next(){
-  current=(current+1)%tracks.length;
-  play();
-}
-
-function seek(sec){
-  audio.currentTime+=sec;
-}
-
-function setTime(v){
-  audio.currentTime=(v/100)*audio.duration;
+function seek(v) {
+  audioPlayer.currentTime = v;
 }
