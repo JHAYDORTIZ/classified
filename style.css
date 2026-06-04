@@ -1,84 +1,52 @@
 body {
   margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: url("background.jpg") no-repeat center center fixed;
-  background-size: cover;
+  font-family: Tahoma, Arial;
 }
 
-/* LOGIN */
+/* LOGIN BACKGROUND */
 .login-screen {
+  height: 100vh;
+  background: url("assets/login-bg.jpg") center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
-/* WINDOW */
+/* DESKTOP BACKGROUND */
+#desktop {
+  height: 100vh;
+  background: url("assets/desktop-bg.jpg") center/cover;
+}
+
+/* WINDOWS */
 .window {
-  width: 450px;
+  position: absolute;
+  width: 400px;
   background: #ece9d8;
   border: 2px solid #0a246a;
-  box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+  box-shadow: 4px 4px 0 black;
 }
 
-/* TITLEBAR XP */
 .titlebar {
   background: linear-gradient(to right, #0058ee, #4f8ef7);
   color: white;
-  font-weight: bold;
-  font-size: 12px;
   padding: 4px;
+  font-weight: bold;
 }
 
-/* CONTENT */
 .content {
-  background: #ece9d8;
-  color: black;
   padding: 10px;
+  background: #ece9d8;
 }
 
-/* INPUT */
-input {
-  width: 100%;
-  padding: 6px;
-  margin-bottom: 10px;
-  border: 2px inset #aaa;
-}
-
-/* BUTTON */
-button {
-  background: #d4d0c8;
-  border: 2px outset white;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-button:active {
-  border: 2px inset white;
-}
-
-/* DESKTOP */
-.desktop {
-  display: grid;
-  grid-template-columns: repeat(6, 90px);
-  gap: 25px;
-  padding: 40px;
-}
-
-/* ICONS */
+/* ICONS (DESKTOP STYLE) */
 .icon {
+  position: absolute;
   width: 80px;
   text-align: center;
-  font-size: 12px;
   cursor: pointer;
-  padding: 6px;
   color: white;
   text-shadow: 1px 1px 2px black;
-}
-
-.icon:hover {
-  background: rgba(0, 84, 255, 0.3);
-  border-radius: 3px;
 }
 
 /* TASKBAR */
@@ -92,33 +60,11 @@ button:active {
   display: flex;
   align-items: center;
   padding-left: 10px;
-  border-top: 2px solid #1a3d8f;
 }
 
-/* WINDOWS POPUP */
-.popup {
-  position: absolute;
-  top: 120px;
-  left: 120px;
-  display: none;
-}
-
-/* FILES */
-.file {
-  padding: 6px;
-  margin: 4px 0;
-  background: white;
-  border: 1px solid #aaa;
-  cursor: pointer;
-}
-
-.file:hover {
-  background: #cce4ff;
-}
-
-/* ERROR */
-.error {
-  color: red;
+/* LOGIN WINDOW */
+.login-box {
+  width: 300px;
 }
 
 /* HIDDEN */
