@@ -1,89 +1,59 @@
 body {
   margin: 0;
-  font-family: Tahoma, Arial, sans-serif;
-  background: radial-gradient(circle at top, #1a1f2e, #0b0d12);
-  color: white;
+  font-family: monospace;
+  background: #0b0b0f;
+  color: #ddd;
 }
 
 /* LOGIN */
-.login {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.panel {
+.center {
   width: 320px;
-  padding: 20px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  text-align: center;
+  margin: 120px auto;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background: #111;
-  border: 1px solid #333;
-  color: white;
-}
-
-button {
-  margin-top: 10px;
-  width: 100%;
-  padding: 10px;
-  background: #2b6cff;
-  border: none;
-  color: white;
-  cursor: pointer;
-}
-
-/* DESKTOP */
-#desktop {
-  height: 100vh;
-  position: relative;
-}
-
-/* ICONS */
-.icon {
-  position: absolute;
-  width: 150px;
-  padding: 10px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  cursor: pointer;
-}
-
-.icon:hover {
-  background: rgba(43,108,255,0.25);
-}
-
-/* WINDOWS */
+/* WINDOW */
 .window {
   position: absolute;
-  top: 120px;
-  left: 200px;
-  width: 380px;
-  background: #161a22;
-  border: 1px solid #2b6cff;
+  width: 320px;
+  background: #111;
+  border: 1px solid #333;
+  transition: all 0.15s ease;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.hidden {
   display: none;
 }
 
-.bar {
-  background: #2b6cff;
+.titlebar {
+  background: #1a1a1a;
   padding: 6px;
   cursor: move;
-  font-size: 12px;
 }
 
 .content {
   padding: 10px;
 }
 
-button {
-  margin: 10px;
+/* DESKTOP */
+.desktop {
+  display: flex;
+  gap: 20px;
+  padding: 40px;
+  height: 100vh;
+}
+
+.icon {
+  width: 100px;
+  padding: 10px;
+  background: #111;
+  border: 1px solid #333;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.icon:active {
+  transform: scale(0.95);
 }
 
 /* TASKBAR */
@@ -91,24 +61,26 @@ button {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 36px;
-  background: #0b0d12;
-  border-top: 1px solid #2b6cff;
-  display: flex;
-  align-items: center;
+  background: #0f0f0f;
+  padding: 5px;
+  border-top: 1px solid #333;
 }
 
-.start {
-  background: #2b6cff;
-  padding: 8px 14px;
-  font-weight: bold;
+/* TEXT */
+textarea {
+  width: 100%;
+  height: 120px;
+  background: black;
+  color: white;
+  border: 1px solid #333;
 }
 
-.title {
-  flex: 1;
-  padding-left: 10px;
+.error {
+  color: red;
 }
 
-.clock {
-  padding-right: 10px;
+/* SNAKE */
+canvas {
+  background: black;
+  border: 1px solid #333;
 }
