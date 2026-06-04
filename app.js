@@ -41,7 +41,11 @@ setInterval(()=>{
 
 /* WINDOWS */
 function openWindow(id){
+
+  playClick();
+
   document.getElementById(id).classList.remove("hidden");
+
 }
 
 function playClick(){
@@ -113,8 +117,13 @@ let current=0;
 let audio=new Audio();
 
 function openPlayer(){
+
+  playClick();
+
   document.getElementById("player").classList.remove("hidden");
+
   renderPlaylist();
+
 }
 
 function renderPlaylist(){
@@ -193,6 +202,8 @@ document.addEventListener("mouseup",()=>{
 let snakeInterval;
 
 function startSnake(){
+
+  playClick();
 
   clearInterval(snakeInterval);
 
