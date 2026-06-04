@@ -6,40 +6,41 @@ const bootSound = new Audio("sounds/boot.mp3");
 const clickSound = new Audio("sounds/click.mp3");
 const errorSound = new Audio("sounds/error.mp3");
 
-/* ===== LOGIN FIX GLOBAL ===== */
-window.login = function () {
-  const v = document.getElementById("password").value.trim();
+/* ===== LOGIN FUNCIONA SIEMPRE ===== */
+function doLogin() {
+  const input = document.getElementById("password");
+  const v = (input?.value || "").trim();
 
   if (v === "pizza17") {
     isAdmin = true;
     currentUser = "pizza17";
-
-    document.getElementById("login").style.display = "none";
-    document.getElementById("desktop").classList.remove("hidden");
-
-    bootSound.play().catch(()=>{});
+    startSystem();
   }
 
   else if (v === "4tanyatapes") {
     isAdmin = false;
     currentUser = "4tanyatapes";
-
-    document.getElementById("login").style.display = "none";
-    document.getElementById("desktop").classList.remove("hidden");
-
-    bootSound.play().catch(()=>{});
+    startSystem();
   }
 
   else {
-    errorSound.play();
+    errorSound.play().catch(()=>{});
     document.getElementById("error").textContent = "ACCESS DENIED";
   }
-};
+}
 
-/* ENTER KEY */
+function startSystem() {
+  document.getElementById("login").style.display = "none";
+  document.getElementById("desktop").classList.remove("hidden");
+  bootSound.play().catch(()=>{});
+}
+
+/* BOTÓN LOGIN */
 document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("password").addEventListener("keydown", e => {
-    if (e.key === "Enter") window.login();
+  document.getElementById("loginBtn").addEventListener("click", doLogin);
+
+  document.getElementById("password").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") doLogin();
   });
 });
 
@@ -51,7 +52,7 @@ setInterval(() => {
 }, 1000);
 
 /* CLICK SOUND */
-document.addEventListener("click", e => {
+document.addEventListener("click", (e) => {
   if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
     clickSound.currentTime = 0;
     clickSound.play();
@@ -69,7 +70,7 @@ function closeWindow(id) {
   document.getElementById(id).classList.add("hidden");
 }
 
-/* ICON GRID FIX */
+/* ICON GRID */
 const icons = document.querySelectorAll(".icon");
 
 icons.forEach((i, idx) => {
@@ -98,14 +99,15 @@ function searchFiles() {
     }
   });
 
-  box.innerHTML = res.length ? res.map(r => `<p>${r}</p>`).join("") : "No results found";
+  box.innerHTML = res.length
+    ? res.map(r => `<p>${r}</p>`).join("")
+    : "No results found";
 }
 
 /* AUDIO PLAYER SIMPLE */
 let tracks = ["audio1.mp3","audio2.mp3"];
 let current = 0;
 let audio = new Audio();
-let loop = false;
 
 function openPlayer() {
   document.getElementById("player").classList.remove("hidden");
