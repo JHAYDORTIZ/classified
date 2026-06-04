@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CLASSIFIED SYSTEM</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -9,63 +10,89 @@
 <body>
 
 <!-- LOGIN -->
-<div id="login" class="window center">
-  <div class="titlebar">SYSTEM ACCESS</div>
+<div id="login" class="login-screen">
+  <div class="window">
+    <div class="titlebar">SYSTEM ACCESS</div>
 
-  <div class="content">
-    <p>ENTER PASSWORD</p>
-    <input id="password" type="password" placeholder="password">
-    <button onclick="login()">ENTER</button>
-    <p id="error" class="error"></p>
+    <div class="content">
+      <p>ENTER PASSWORD</p>
+
+      <input
+        id="password"
+        type="password"
+        placeholder="password"
+      >
+
+      <button id="enterBtn">ENTER</button>
+
+      <p id="error" class="error"></p>
+    </div>
   </div>
 </div>
 
 <!-- DESKTOP -->
-<div id="desktop" class="hidden">
+<div id="desktop" style="display:none;">
 
-  <div class="taskbar">CLASSIFIED SYSTEM</div>
+  <div class="taskbar">
+    CLASSIFIED SYSTEM
+  </div>
 
   <div class="desktop">
 
-    <div class="icon" onclick="openWindow('txtWindow')">📄 notes.txt</div>
-    <div class="icon" onclick="openWindow('musicWindow')">📁 audio</div>
-    <div class="icon" onclick="openWindow('videoWindow')">📁 videos</div>
-    <div class="icon" onclick="openWindow('photoWindow')">📁 photos</div>
+    <div class="icon" onclick="openWindow('txtWindow')">
+      📄 notes.txt
+    </div>
+
+    <div class="icon" onclick="openWindow('musicWindow')">
+      📁 audio
+    </div>
+
+    <div class="icon" onclick="openWindow('videoWindow')">
+      📁 videos
+    </div>
+
+    <div class="icon" onclick="openWindow('photoWindow')">
+      📁 photos
+    </div>
 
   </div>
 
-  <!-- TXT -->
-  <div id="txtWindow" class="window hidden draggable">
+  <!-- NOTES -->
+  <div id="txtWindow" class="window popup hidden">
     <div class="titlebar">notes.txt</div>
+
     <div class="content">
-      <textarea id="notes">trap villian exclusive</textarea>
+      <textarea>trap villian exclusive</textarea>
       <button onclick="closeWindow('txtWindow')">CLOSE</button>
     </div>
   </div>
 
-  <!-- MUSIC -->
-  <div id="musicWindow" class="window hidden draggable">
+  <!-- AUDIO -->
+  <div id="musicWindow" class="window popup hidden">
     <div class="titlebar">audio archive</div>
+
     <div class="content">
-      <p>no files yet</p>
+      <p>No files yet.</p>
       <button onclick="closeWindow('musicWindow')">CLOSE</button>
     </div>
   </div>
 
   <!-- VIDEO -->
-  <div id="videoWindow" class="window hidden draggable">
+  <div id="videoWindow" class="window popup hidden">
     <div class="titlebar">video archive</div>
+
     <div class="content">
-      <p>no files yet</p>
+      <p>No files yet.</p>
       <button onclick="closeWindow('videoWindow')">CLOSE</button>
     </div>
   </div>
 
   <!-- PHOTO -->
-  <div id="photoWindow" class="window hidden draggable">
+  <div id="photoWindow" class="window popup hidden">
     <div class="titlebar">photo archive</div>
+
     <div class="content">
-      <p>no files yet</p>
+      <p>No files yet.</p>
       <button onclick="closeWindow('photoWindow')">CLOSE</button>
     </div>
   </div>
@@ -73,5 +100,6 @@
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
