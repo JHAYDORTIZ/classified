@@ -10,26 +10,19 @@ bootSound.volume = 0.7;
 clickSound.volume = 0.25;
 errorSound.volume = 0.5;
 
-/* BOOT (fix navegadores) */
-window.addEventListener("click", function bootOnce() {
-  bootSound.play().catch(() => {});
-  window.removeEventListener("click", bootOnce);
+/* ENTER EN LOGIN (TECLADO) */
+document.getElementById("password").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") {
+    login();
+  }
 });
 
 /* CLOCK */
 setInterval(() => {
   const d = new Date();
   document.getElementById("clock").textContent =
-    d.getHours() + ":" + d.getMinutes().toString().padStart(2, "0");
+    d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }, 1000);
-
-/* CLICK GLOBAL */
-document.addEventListener("click", (e) => {
-  if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
-    clickSound.currentTime = 0;
-    clickSound.play();
-  }
-});
 
 /* LOGIN */
 function login() {
@@ -38,12 +31,22 @@ function login() {
   if (input === ADMIN_PASSWORD || input === USER_PASSWORD) {
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
+
+    // boot SOLO después del login
+    bootSound.play().catch(() => {});
   } else {
-    errorSound.currentTime = 0;
     errorSound.play();
     document.getElementById("error").textContent = "ACCESS DENIED";
   }
 }
+
+/* CLICK SOUND */
+document.addEventListener("click", (e) => {
+  if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
+    clickSound.currentTime = 0;
+    clickSound.play();
+  }
+});
 
 /* WINDOWS */
 function openWindow(id) {
@@ -57,9 +60,26 @@ function closeWindow(id) {
 /* SEARCH */
 function searchFiles() {
   const q = document.getElementById("search").value.toLowerCase();
+  const box = document.getElementById("searchResults");
+  const win = document.getElementById("searchWindow");
+
+  let results = [];
+
   document.querySelectorAll(".icon").forEach(i => {
-    i.style.display = i.textContent.toLowerCase().includes(q) ? "block" : "none";
+    if (i.textContent.toLowerCase().includes(q)) {
+      results.push(i.textContent);
+    }
   });
+
+  if (!q) {
+    win.classList.add("hidden");
+    return;
+  }
+
+  win.classList.remove("hidden");
+  box.innerHTML = results.length
+    ? results.map(r => `<p>${r}</p>`).join("")
+    : "<p>No results found</p>";
 }
 
 /* SNAKE */
@@ -85,8 +105,23 @@ function game() {
     y: snake[0].y + dir.y
   };
 
+  if (head.x < 0 || head.y < 0 || head.x > 19 || head.y > 19) {
+    clearInterval(loop);
+    alert("TRY AGAIN");
+    startSnake();
+    return;
+  }
+
   snake.unshift(head);
-  snake.pop();
+
+  if (head.x === food.x && head.y === food.y) {
+    food = {
+      x: Math.floor(Math.random() * 20),
+      y: Math.floor(Math.random() * 20)
+    };
+  } else {
+    snake.pop();
+  }
 
   ctx.fillStyle = "black";
   ctx.fillRect(0, 0, 300, 300);
