@@ -62,8 +62,11 @@ function login() {
     currentUser = v;
 
     document.getElementById("login").style.display="none";
-    document.getElementById("desktop").classList.remove("hidden");
-renderDesktop();
+document.getElementById("desktop").classList.remove("hidden");
+
+setTimeout(() => {
+  renderDesktop();
+}, 50);
     boot.play().catch(()=>{});
   }
   else {
