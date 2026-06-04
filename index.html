@@ -17,13 +17,9 @@
     <div class="content">
       <p>ENTER PASSWORD</p>
 
-      <input
-        id="password"
-        type="password"
-        placeholder="password"
-      >
+      <input id="password" type="password" placeholder="password">
 
-      <button id="enterBtn">ENTER</button>
+      <button onclick="login()">ENTER</button>
 
       <p id="error" class="error"></p>
     </div>
@@ -33,66 +29,47 @@
 <!-- DESKTOP -->
 <div id="desktop" style="display:none;">
 
-  <div class="taskbar">
-    CLASSIFIED SYSTEM
-  </div>
-
   <div class="desktop">
 
-    <div class="icon" onclick="openWindow('txtWindow')">
-      📄 notes.txt
-    </div>
-
-    <div class="icon" onclick="openWindow('musicWindow')">
-      📁 audio
-    </div>
-
-    <div class="icon" onclick="openWindow('videoWindow')">
-      📁 videos
-    </div>
-
-    <div class="icon" onclick="openWindow('photoWindow')">
-      📁 photos
-    </div>
+    <div class="icon" ondblclick="openWindow('txtWindow')">📄 notes.txt</div>
+    <div class="icon" ondblclick="openWindow('musicWindow')">📁 AUDIO</div>
+    <div class="icon" ondblclick="openWindow('videoWindow')">📁 VIDEOS</div>
+    <div class="icon" ondblclick="openWindow('photoWindow')">📁 PHOTOS</div>
 
   </div>
 
-  <!-- NOTES -->
-  <div id="txtWindow" class="window popup hidden">
-    <div class="titlebar">notes.txt</div>
+  <div class="taskbar">CLASSIFIED SYSTEM</div>
 
+  <!-- WINDOWS -->
+
+  <div id="txtWindow" class="window popup">
+    <div class="titlebar">notes.txt</div>
     <div class="content">
       <textarea>trap villian exclusive</textarea>
       <button onclick="closeWindow('txtWindow')">CLOSE</button>
     </div>
   </div>
 
-  <!-- AUDIO -->
-  <div id="musicWindow" class="window popup hidden">
+  <div id="musicWindow" class="window popup">
     <div class="titlebar">audio archive</div>
-
     <div class="content">
-      <p>No files yet.</p>
+      <p>No files yet</p>
       <button onclick="closeWindow('musicWindow')">CLOSE</button>
     </div>
   </div>
 
-  <!-- VIDEO -->
-  <div id="videoWindow" class="window popup hidden">
+  <div id="videoWindow" class="window popup">
     <div class="titlebar">video archive</div>
-
     <div class="content">
-      <p>No files yet.</p>
+      <p>No files yet</p>
       <button onclick="closeWindow('videoWindow')">CLOSE</button>
     </div>
   </div>
 
-  <!-- PHOTO -->
-  <div id="photoWindow" class="window popup hidden">
+  <div id="photoWindow" class="window popup">
     <div class="titlebar">photo archive</div>
-
     <div class="content">
-      <p>No files yet.</p>
+      <p>No files yet</p>
       <button onclick="closeWindow('photoWindow')">CLOSE</button>
     </div>
   </div>
