@@ -1,91 +1,66 @@
 body {
-  margin: 0;
-  overflow: hidden;
+  margin:0;
+  overflow:hidden;
   font-family: Arial;
 }
 
 /* LOGIN */
 #login {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #111;
-  color: white;
-}
-
-#login .box {
-  padding: 20px;
-  background: #222;
-  border: 1px solid #444;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#111;
+  color:white;
 }
 
 /* DESKTOP */
 #desktop {
-  height: 100vh;
-  width: 100vw;
-  background: url("assets/backgrounds/desktop.jpg") center/cover;
+  height:100vh;
+  width:100vw;
+  background:url("assets/backgrounds/desktop.jpg") center/cover;
 }
 
 /* TASKBAR */
 #taskbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-
-  width: 100%;
-  height: 32px;
-
-  background: #245edb;
-  color: white;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 10px;
-  box-sizing: border-box;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:32px;
+  background:#245edb;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  color:white;
 }
 
-/* ICONS GRID */
+/* ICONS */
 #icons {
-  position: absolute;
-  top: 40px;
-  left: 20px;
-
-  display: grid;
+  position:absolute;
+  top:40px;
+  left:20px;
+  display:grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px;
-
-  color: white;
-  user-select: none;
+  gap:20px;
+  color:white;
 }
 
 /* WINDOWS */
 .win {
-  position: absolute;
-  width: 420px;
-
-  background: #ece9d8;
-  border: 1px solid #000;
+  position:absolute;
+  width:400px;
+  background:#ece9d8;
+  border:1px solid #000;
 }
 
 .bar {
-  background: linear-gradient(#0a64f5, #003aa6);
-  color: white;
-
-  padding: 5px;
-  cursor: move;
-  user-select: none;
-
-  display: flex;
-  justify-content: space-between;
-}
-
-.content {
-  padding: 10px;
+  background:#0055ff;
+  color:white;
+  padding:5px;
+  cursor:move;
 }
 
 .hidden {
-  display: none;
+  display:none;
 }
