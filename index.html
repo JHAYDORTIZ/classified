@@ -15,7 +15,7 @@
 
     <input id="password" type="password" placeholder="password">
 
-    <button onclick="login()">ENTER</button>
+    <button id="loginBtn">ENTER</button>
 
     <p id="error"></p>
   </div>
@@ -76,7 +76,9 @@
 
   <div id="notes" class="window hidden">
     <div class="titlebar">texto <div class="close-btn" onclick="closeWindow('notes')">✖</div></div>
-    <div class="content"><textarea>trap villian exclusive</textarea></div>
+    <div class="content">
+      <textarea>trap villian exclusive</textarea>
+    </div>
   </div>
 
   <div id="unknown" class="window hidden">
