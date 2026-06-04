@@ -31,21 +31,18 @@ body {
   left: 20px;
 }
 
-/* ICONO XP SIMPLIFICADO */
 .icon {
   width: 120px;
   height: 110px;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 
+  position: absolute;
   color: white;
   text-shadow: 1px 1px 2px black;
-
-  position: absolute;
-  cursor: grab;
+  cursor: pointer;
   user-select: none;
 }
 
@@ -82,7 +79,9 @@ body {
   border: 2px solid #0a246a;
 }
 
-.hidden { display: none; }
+.hidden {
+  display: none;
+}
 
 .titlebar {
   background: linear-gradient(to right, #0058e6, #4f8ff7);
@@ -92,7 +91,6 @@ body {
   position: relative;
 }
 
-/* CLOSE BUTTON */
 .close-btn {
   position: absolute;
   right: 4px;
@@ -100,14 +98,8 @@ body {
   width: 18px;
   height: 18px;
   background: #c00000;
-  color: white;
-  font-size: 12px;
   text-align: center;
   cursor: pointer;
-}
-
-.close-btn:hover {
-  background: red;
 }
 
 .content {
