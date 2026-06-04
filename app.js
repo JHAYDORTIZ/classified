@@ -225,7 +225,7 @@ function startSnake(){
 
   let score = 0;
 
-  document.onkeydown = (e)=>{
+ function keyHandler(e){
 
     if(e.key==="ArrowUp" && dir.y!==1)
       dir={x:0,y:-1};
