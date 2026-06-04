@@ -1,10 +1,15 @@
 {
   "images": [
-    "media/images/img1.jpg",
-    "media/images/img2.jpg"
+    "media/images/foto1.jpg",
+    "media/images/foto2.jpg"
+  ],
+  "videos": [
+    "media/videos/video1.mp4"
   ],
   "audio": [
     "media/audio/track1.mp3"
   ],
-  "videos": []
+  "unknown": [
+    "media/images/foto3.jpg"
+  ]
 }
