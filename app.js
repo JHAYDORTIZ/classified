@@ -1,38 +1,27 @@
 const PASSWORD = "4tanyatapes";
 
-const loginBox = document.getElementById("login");
-const desktop = document.getElementById("desktop");
-const error = document.getElementById("error");
-
-document
-  .getElementById("enterBtn")
-  .addEventListener("click", login);
+document.getElementById("enterBtn").addEventListener("click", login);
 
 function login() {
 
-  const value =
-    document.getElementById("password").value;
+  const value = document.getElementById("password").value;
 
-  if(value === PASSWORD){
+  if (value === PASSWORD) {
 
-    loginBox.style.display = "none";
-    desktop.style.display = "block";
+    document.getElementById("login").style.display = "none";
+    document.getElementById("desktop").style.display = "block";
 
-  }else{
-
-    error.textContent = "ACCESS DENIED";
-
+  } else {
+    document.getElementById("error").textContent = "ACCESS DENIED";
   }
 }
 
-function openWindow(id){
-  document
-    .getElementById(id)
-    .classList.remove("hidden");
+function openWindow(id) {
+  const el = document.getElementById(id);
+  el.style.display = "block";
+  el.style.zIndex = 999;
 }
 
-function closeWindow(id){
-  document
-    .getElementById(id)
-    .classList.add("hidden");
+function closeWindow(id) {
+  document.getElementById(id).style.display = "none";
 }
