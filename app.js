@@ -190,13 +190,16 @@ document.addEventListener("mouseup",()=>{
 });
 /* SNAKE */
 
+let snakeGameRunning = false;
+
 function startSnake(){
 
-  const canvas =
-    document.getElementById("game");
+  if(snakeGameRunning) return;
 
-  const ctx =
-    canvas.getContext("2d");
+  snakeGameRunning = true;
+
+  const canvas = document.getElementById("game");
+  const ctx = canvas.getContext("2d");
 
   let snake = [
     {x:150,y:150}
@@ -223,7 +226,7 @@ function startSnake(){
 
   };
 
-  function loop(){
+  setInterval(()=>{
 
     ctx.clearRect(0,0,300,300);
 
@@ -247,10 +250,6 @@ function startSnake(){
 
     });
 
-    requestAnimationFrame(loop);
-
-  }
-
-  loop();
+  },100);
 
 }
