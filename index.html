@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>CLASSIFIED SYSTEM</title>
+<title>CLASSIFIED OS</title>
 <link rel="stylesheet" href="style.css">
 
 <style>
@@ -45,7 +45,7 @@ body {
 
   </div>
 
-  <!-- NOTES -->
+  <!-- WINDOWS -->
   <div id="notes" class="window hidden">
     <div class="titlebar">notes.txt</div>
     <div class="content">
@@ -54,31 +54,34 @@ body {
     </div>
   </div>
 
-  <!-- AUDIO -->
   <div id="audio" class="window hidden">
     <div class="titlebar">audio</div>
     <div class="content">
-      <p>no files</p>
+      <p>No files</p>
       <button onclick="closeWindow('audio')">CLOSE</button>
     </div>
   </div>
 
-  <!-- VIDEO -->
   <div id="video" class="window hidden">
     <div class="titlebar">videos</div>
     <div class="content">
-      <p>no files</p>
+      <p>No files</p>
       <button onclick="closeWindow('video')">CLOSE</button>
     </div>
   </div>
 
-  <!-- IMAGES -->
   <div id="images" class="window hidden">
     <div class="titlebar">images</div>
     <div class="content">
-      <p>no files</p>
+      <p>No files</p>
       <button onclick="closeWindow('images')">CLOSE</button>
     </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div id="searchWindow" class="window hidden">
+    <div class="titlebar">Search Results</div>
+    <div class="content" id="searchResults"></div>
   </div>
 
   <!-- SNAKE -->
