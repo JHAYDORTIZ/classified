@@ -1,81 +1,94 @@
-body {
-  margin: 0;
-  background: #07070a;
-  font-family: monospace;
-  color: #ddd;
+body{
+  margin:0;
+  background:#07070a;
+  color:#ddd;
+  font-family:monospace;
 }
 
-/* LOGIN */
-.center {
-  width: 350px;
-  margin: 120px auto;
+.login-screen{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-/* WINDOW */
-.window {
-  position: absolute;
-  width: 320px;
-  background: #111;
-  border: 1px solid #333;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+.window{
+  width:350px;
+  background:#111;
+  border:1px solid #333;
+  box-shadow:0 0 20px rgba(0,0,0,.8);
 }
 
-.titlebar {
-  background: #1a1a1a;
-  padding: 6px;
-  cursor: move;
-  font-size: 12px;
-  border-bottom: 1px solid #333;
+.titlebar{
+  background:#1a1a1a;
+  padding:8px;
+  border-bottom:1px solid #333;
 }
 
-.content {
-  padding: 10px;
+.content{
+  padding:15px;
 }
 
-.hidden {
-  display: none;
+input{
+  width:100%;
+  box-sizing:border-box;
+  padding:8px;
+  margin-bottom:10px;
+  background:#000;
+  color:#fff;
+  border:1px solid #333;
 }
 
-/* DESKTOP */
-.desktop {
-  height: 100vh;
-  padding: 40px;
-  display: flex;
-  gap: 20px;
+button{
+  padding:8px 12px;
+  cursor:pointer;
 }
 
-.icon {
-  width: 100px;
-  padding: 10px;
-  background: #111;
-  border: 1px solid #333;
-  cursor: pointer;
+.error{
+  color:red;
 }
 
-.icon:hover {
-  background: #1c1c1c;
+.desktop{
+  display:flex;
+  gap:20px;
+  padding:40px;
 }
 
-/* TASKBAR */
-.taskbar {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background: #0f0f0f;
-  padding: 5px;
-  border-top: 1px solid #333;
+.icon{
+  width:100px;
+  padding:10px;
+  border:1px solid #333;
+  background:#111;
+  cursor:pointer;
 }
 
-/* TEXTAREA */
-textarea {
-  width: 100%;
-  height: 120px;
-  background: black;
-  color: #ddd;
-  border: 1px solid #333;
+.icon:hover{
+  background:#1b1b1b;
 }
 
-/* ERROR */
-.error {
-  color: red;
+.taskbar{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background:#111;
+  border-top:1px solid #333;
+  padding:8px;
+}
+
+.hidden{
+  display:none;
+}
+
+.popup{
+  position:absolute;
+  top:120px;
+  left:120px;
+}
+
+textarea{
+  width:100%;
+  height:150px;
+  background:#000;
+  color:#ddd;
+  border:1px solid #333;
 }
