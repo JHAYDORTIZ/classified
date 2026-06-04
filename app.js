@@ -24,10 +24,9 @@ function renderFolder(folderName) {
   const windowEl = document.getElementById(folderName);
   const content = windowEl.querySelector(".content");
 
-  const files = fileSystem.filter(f => {
-    const parts = f.split("/");
-return f.includes("/" + folderName + "/");
-  });
+  const files = fileSystem.filter(f =>
+    f.startsWith(`media/${folderName}/`)
+  );
 
   content.innerHTML = files.length
     ? files.map(f => `<div>📄 ${f.split("/").pop()}</div>`).join("")
