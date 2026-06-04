@@ -14,20 +14,9 @@ function login() {
 
 /* WINDOWS */
 function openWindow(id) {
-  document.getElementById(id).style.display = "block";
+  document.getElementById(id).classList.remove("hidden");
 }
 
 function closeWindow(id) {
-  document.getElementById(id).style.display = "none";
+  document.getElementById(id).classList.add("hidden");
 }
-
-/* CLOCK */
-function updateClock() {
-  const now = new Date();
-  const h = String(now.getHours()).padStart(2, "0");
-  const m = String(now.getMinutes()).padStart(2, "0");
-  document.getElementById("clock").innerText = `${h}:${m}`;
-}
-
-setInterval(updateClock, 1000);
-updateClock();
