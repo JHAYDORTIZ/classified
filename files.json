@@ -1,15 +1,14 @@
 {
-  "images": [
-    "media/images/foto1.jpg",
-    "media/images/foto2.jpg"
-  ],
-  "videos": [
-    "media/videos/video1.mp4"
-  ],
-  "audio": [
-    "media/audio/track1.mp3"
-  ],
-  "unknown": [
-    "media/images/foto3.jpg"
+  "files": [
+    {
+      "name": "foto1.jpg",
+      "path": "media/images/foto1.jpg",
+      "folder": "videos"
+    },
+    {
+      "name": "track1.mp3",
+      "path": "media/audio/track1.mp3",
+      "folder": "unknown"
+    }
   ]
 }
