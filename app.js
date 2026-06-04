@@ -2,31 +2,33 @@
 let isAdmin = false;
 let currentUser = null;
 
-/* AUDIO */
-const bootSound = new Audio("sounds/boot.mp3");
-const clickSound = new Audio("sounds/click.mp3");
-const errorSound = new Audio("sounds/error.mp3");
+/* SOUNDS */
+const boot = new Audio("sounds/boot.mp3");
+const click = new Audio("sounds/click.mp3");
+const error = new Audio("sounds/error.mp3");
 
 /* LOGIN */
 document.getElementById("loginBtn").addEventListener("click", login);
 
-document.getElementById("password").addEventListener("keydown", (e)=>{
-  if(e.key === "Enter") login();
+document.getElementById("password").addEventListener("keydown", e=>{
+  if(e.key==="Enter") login();
 });
 
 function login() {
   const v = document.getElementById("password").value.trim();
 
   if(v==="pizza17" || v==="4tanyatapes") {
+
     isAdmin = (v==="pizza17");
     currentUser = v;
 
     document.getElementById("login").style.display="none";
     document.getElementById("desktop").classList.remove("hidden");
 
-    bootSound.play().catch(()=>{});
-  } else {
-    errorSound.play();
+    boot.play().catch(()=>{});
+  }
+  else {
+    error.play();
     document.getElementById("error").textContent="ACCESS DENIED";
   }
 }
@@ -35,47 +37,31 @@ function login() {
 setInterval(()=>{
   const d=new Date();
   document.getElementById("clock").textContent=
-    d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    d.toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
 },1000);
 
 /* WINDOWS */
 function openWindow(id){
   document.getElementById(id).classList.remove("hidden");
 }
+
 function closeWindow(id){
+  click.play().catch(()=>{});
   document.getElementById(id).classList.add("hidden");
 }
 
-/* 🔥 DRAG FIX REAL */
-let drag=null,ox=0,oy=0;
-
-document.addEventListener("mousedown",(e)=>{
-  if(e.target.classList.contains("titlebar")){
-    drag=e.target.parentElement;
-    ox=e.offsetX;
-    oy=e.offsetY;
-  }
-});
-
-document.addEventListener("mousemove",(e)=>{
-  if(drag){
-    drag.style.left=(e.pageX-ox)+"px";
-    drag.style.top=(e.pageY-oy)+"px";
-  }
-});
-
-document.addEventListener("mouseup",()=>drag=null);
-
-/* ICONS */
+/* ICON GRID */
 const icons=document.querySelectorAll(".icon");
+
 icons.forEach((i,idx)=>{
   const col=idx%2;
   const row=Math.floor(idx/2);
-  i.style.left=(20+col*180)+"px";
-  i.style.top=(40+row*170)+"px";
+
+  i.style.left=(20+col*200)+"px";
+  i.style.top=(40+row*180)+"px";
 });
 
-/* SEARCH (ABRE DE VERDAD) */
+/* SEARCH (ABRE WINDOWS) */
 function searchFiles(){
   const q=document.getElementById("search").value.toLowerCase();
   const w=document.getElementById("searchWindow");
@@ -98,7 +84,6 @@ function searchFiles(){
     : "No results found";
 }
 
-/* 🔥 ABRIR DESDE BUSCADOR */
 function openFromSearch(name){
   const map={
     "imágenes":"images",
@@ -106,15 +91,19 @@ function openFromSearch(name){
     "texto":"notes",
     "unknown":"unknown",
     "snake":"snake",
-    "papelera":"recycle",
+    "papelera de reciclaje":"recycle",
     "reproductor":"player"
   };
 
   if(map[name]) openWindow(map[name]);
 }
 
-/* 🔥 REPRODUCTOR REAL */
-let tracks=["track1.mp3","track2.mp3"];
+/* REPRODUCTOR */
+let tracks=[
+  "media/audio/track1.mp3",
+  "media/audio/track2.mp3"
+];
+
 let current=0;
 let audio=new Audio();
 
