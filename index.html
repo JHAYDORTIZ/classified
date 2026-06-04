@@ -4,12 +4,6 @@
 <meta charset="UTF-8">
 <title>CLASSIFIED OS</title>
 <link rel="stylesheet" href="style.css">
-
-<style>
-body {
-  cursor: url("assets/cursor.cur"), default;
-}
-</style>
 </head>
 
 <body>
@@ -29,69 +23,70 @@ body {
 
   <div class="taskbar">
     <span>CLASSIFIED OS</span>
-
     <input id="search" placeholder="Search..." oninput="searchFiles()">
-
     <span id="clock"></span>
   </div>
 
-  <div class="desktop">
+  <!-- ICONOS -->
+  <div id="desktopArea">
 
-    <div class="icon" onclick="openWindow('notes')">📄 notes.txt</div>
-    <div class="icon" onclick="openWindow('audio')">📁 audio</div>
-    <div class="icon" onclick="openWindow('video')">📁 videos</div>
-    <div class="icon" onclick="openWindow('images')">📁 images</div>
-    <div class="icon" onclick="openWindow('snake')">🐍 snake.exe</div>
+    <div class="icon" data-id="audio" onclick="openWindow('audio')">
+      📁<span>audios</span>
+    </div>
+
+    <div class="icon" data-id="video" onclick="openWindow('video')">
+      📁<span>videos</span>
+    </div>
+
+    <div class="icon" data-id="images" onclick="openWindow('images')">
+      🖼️<span>imagenes</span>
+    </div>
+
+    <div class="icon" data-id="notes" onclick="openWindow('notes')">
+      📄<span>texto</span>
+    </div>
+
+    <div class="icon" data-id="snake" onclick="openWindow('snake')">
+      🐍<span>snake</span>
+    </div>
 
   </div>
 
   <!-- WINDOWS -->
-  <div id="notes" class="window hidden">
-    <div class="titlebar">notes.txt</div>
-    <div class="content">
-      <textarea>trap villian exclusive</textarea>
-      <button onclick="closeWindow('notes')">CLOSE</button>
-    </div>
-  </div>
-
   <div id="audio" class="window hidden">
-    <div class="titlebar">audio</div>
-    <div class="content">
-      <p>No files</p>
-      <button onclick="closeWindow('audio')">CLOSE</button>
-    </div>
+    <div class="titlebar">audios</div>
+    <div class="content">No files</div>
   </div>
 
   <div id="video" class="window hidden">
     <div class="titlebar">videos</div>
-    <div class="content">
-      <p>No files</p>
-      <button onclick="closeWindow('video')">CLOSE</button>
-    </div>
+    <div class="content">No files</div>
   </div>
 
   <div id="images" class="window hidden">
-    <div class="titlebar">images</div>
+    <div class="titlebar">imagenes</div>
+    <div class="content">No files</div>
+  </div>
+
+  <div id="notes" class="window hidden">
+    <div class="titlebar">texto</div>
     <div class="content">
-      <p>No files</p>
-      <button onclick="closeWindow('images')">CLOSE</button>
+      <textarea>trap villian exclusive</textarea>
     </div>
   </div>
 
-  <!-- SEARCH WINDOW -->
-  <div id="searchWindow" class="window hidden">
-    <div class="titlebar">Search Results</div>
-    <div class="content" id="searchResults"></div>
-  </div>
-
-  <!-- SNAKE -->
   <div id="snake" class="window hidden">
     <div class="titlebar">snake.exe</div>
     <div class="content">
       <canvas id="game" width="300" height="300"></canvas>
       <button onclick="startSnake()">START</button>
-      <button onclick="closeWindow('snake')">CLOSE</button>
     </div>
+  </div>
+
+  <!-- SEARCH -->
+  <div id="searchWindow" class="window hidden">
+    <div class="titlebar">Search</div>
+    <div id="searchResults" class="content"></div>
   </div>
 
 </div>
