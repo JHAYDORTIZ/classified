@@ -11,12 +11,11 @@ fetch("index-media.json")
   });
 
 function renderDesktop() {
-  console.log("Archivos cargados:", fileSystem);
-
-  // ejemplo: mostrar en unknown
-  const unknownFiles = fileSystem.filter(f => f.includes("unknown"));
-
-  console.log("Unknown:", unknownFiles);
+  renderFolder("images");
+  renderFolder("video");
+  renderFolder("notes");
+  renderFolder("unknown");
+  renderFolder("recycle");
 }
 
 /* SOUNDS */
