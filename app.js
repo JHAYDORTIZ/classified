@@ -192,64 +192,74 @@ document.addEventListener("mouseup",()=>{
 
 let snakeGameRunning = false;
 
+let snakeInterval;
+
 function startSnake(){
 
-  if(snakeGameRunning) return;
-
-  snakeGameRunning = true;
+  clearInterval(snakeInterval);
 
   const canvas = document.getElementById("game");
   const ctx = canvas.getContext("2d");
 
   let snake = [
-    {x:150,y:150}
+    {x:15,y:15}
   ];
 
   let dir = {
-    x:10,
+    x:1,
     y:0
   };
 
   document.onkeydown = (e)=>{
 
-    if(e.key==="ArrowUp")
-      dir={x:0,y:-10};
+    if(e.key==="ArrowUp") dir={x:0,y:-1};
 
-    if(e.key==="ArrowDown")
-      dir={x:0,y:10};
+    if(e.key==="ArrowDown") dir={x:0,y:1};
 
-    if(e.key==="ArrowLeft")
-      dir={x:-10,y:0};
+    if(e.key==="ArrowLeft") dir={x:-1,y:0};
 
-    if(e.key==="ArrowRight")
-      dir={x:10,y:0};
+    if(e.key==="ArrowRight") dir={x:1,y:0};
 
   };
 
-  setInterval(()=>{
+  snakeInterval = setInterval(()=>{
+
+    const head = {
+      x: snake[0].x + dir.x,
+      y: snake[0].y + dir.y
+    };
+
+    if(
+      head.x < 0 ||
+      head.y < 0 ||
+      head.x >= 30 ||
+      head.y >= 30
+    ){
+      clearInterval(snakeInterval);
+
+      alert("Try Again");
+
+      return;
+    }
+
+    snake.unshift(head);
+    snake.pop();
 
     ctx.clearRect(0,0,300,300);
-
-    snake.unshift({
-      x:snake[0].x+dir.x,
-      y:snake[0].y+dir.y
-    });
-
-    snake.pop();
 
     snake.forEach(part=>{
 
       ctx.fillStyle="lime";
 
       ctx.fillRect(
-        part.x,
-        part.y,
+        part.x*10,
+        part.y*10,
         10,
         10
       );
 
     });
 
-  },100);
+  },120);
 
 }
