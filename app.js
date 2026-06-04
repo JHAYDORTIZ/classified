@@ -1,4 +1,5 @@
 const ADMIN_PASSWORD = "pizza17";
+const USER_PASSWORD = "4tanyatapes";
 
 /* SOUNDS */
 const bootSound = new Audio("sounds/boot.mp3");
@@ -21,7 +22,7 @@ setInterval(() => {
 function login() {
   const v = document.getElementById("password").value;
 
-  if (v === ADMIN_PASSWORD) {
+  if (v === ADMIN_PASSWORD || v === USER_PASSWORD) {
     document.getElementById("login").style.display = "none";
     document.getElementById("desktop").classList.remove("hidden");
 
@@ -32,7 +33,7 @@ function login() {
   }
 }
 
-/* CLICK SOUND */
+/* CLICK */
 document.addEventListener("click", e => {
   if (e.target.closest(".icon") || e.target.tagName === "BUTTON") {
     clickSound.currentTime = 0;
@@ -43,6 +44,10 @@ document.addEventListener("click", e => {
 /* WINDOWS */
 function openWindow(id) {
   document.getElementById(id).classList.remove("hidden");
+}
+
+function closeWindow(id) {
+  document.getElementById(id).classList.add("hidden");
 }
 
 /* DRAG WINDOWS */
@@ -67,25 +72,24 @@ document.addEventListener("mousemove", e => {
 
 document.addEventListener("mouseup", () => dragWin = null);
 
-/* DRAG ICONOS */
+/* DRAG ICONS (GRID SNAP) */
 let dragIcon = null;
-let iconOffsetX = 0;
-let iconOffsetY = 0;
+let ix = 0;
+let iy = 0;
 
 document.querySelectorAll(".icon").forEach(icon => {
-
   icon.addEventListener("mousedown", e => {
     dragIcon = icon;
-    iconOffsetX = e.offsetX;
-    iconOffsetY = e.offsetY;
+    ix = e.offsetX;
+    iy = e.offsetY;
   });
-
 });
 
 document.addEventListener("mousemove", e => {
   if (dragIcon) {
-    dragIcon.style.left = (e.pageX - iconOffsetX) + "px";
-    dragIcon.style.top = (e.pageY - iconOffsetY) + "px";
+    dragIcon.style.position = "absolute";
+    dragIcon.style.left = Math.round((e.pageX - ix) / 80) * 80 + "px";
+    dragIcon.style.top = Math.round((e.pageY - iy) / 80) * 80 + "px";
   }
 });
 
@@ -108,6 +112,7 @@ function searchFiles() {
   if (!q) return win.classList.add("hidden");
 
   win.classList.remove("hidden");
+
   box.innerHTML = res.length
     ? res.map(r => `<p>${r}</p>`).join("")
     : "<p>No results found</p>";
