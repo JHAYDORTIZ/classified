@@ -190,8 +190,6 @@ document.addEventListener("mouseup",()=>{
 });
 /* SNAKE */
 
-let snakeGameRunning = false;
-
 let snakeInterval;
 
 function startSnake(){
@@ -205,51 +203,87 @@ function startSnake(){
     {x:15,y:15}
   ];
 
-  let dir = {
-    x:1,
-    y:0
+  let dir = {x:1,y:0};
+
+  let food = {
+    x:Math.floor(Math.random()*30),
+    y:Math.floor(Math.random()*30)
   };
+
+  let score = 0;
 
   document.onkeydown = (e)=>{
 
-    if(e.key==="ArrowUp") dir={x:0,y:-1};
+    if(e.key==="ArrowUp" && dir.y!==1)
+      dir={x:0,y:-1};
 
-    if(e.key==="ArrowDown") dir={x:0,y:1};
+    if(e.key==="ArrowDown" && dir.y!==-1)
+      dir={x:0,y:1};
 
-    if(e.key==="ArrowLeft") dir={x:-1,y:0};
+    if(e.key==="ArrowLeft" && dir.x!==1)
+      dir={x:-1,y:0};
 
-    if(e.key==="ArrowRight") dir={x:1,y:0};
+    if(e.key==="ArrowRight" && dir.x!==-1)
+      dir={x:1,y:0};
 
   };
 
   snakeInterval = setInterval(()=>{
 
-    const head = {
-      x: snake[0].x + dir.x,
-      y: snake[0].y + dir.y
+    const head={
+      x:snake[0].x+dir.x,
+      y:snake[0].y+dir.y
     };
 
     if(
-      head.x < 0 ||
-      head.y < 0 ||
-      head.x >= 30 ||
-      head.y >= 30
+      head.x<0 ||
+      head.y<0 ||
+      head.x>=30 ||
+      head.y>=30
     ){
       clearInterval(snakeInterval);
-
-      alert("Try Again");
-
+      alert("Try Again - Score: "+score);
       return;
     }
 
+    for(let part of snake){
+      if(part.x===head.x && part.y===head.y){
+        clearInterval(snakeInterval);
+        alert("Try Again - Score: "+score);
+        return;
+      }
+    }
+
     snake.unshift(head);
-    snake.pop();
+
+    if(head.x===food.x && head.y===food.y){
+
+      score++;
+
+      food={
+        x:Math.floor(Math.random()*30),
+        y:Math.floor(Math.random()*30)
+      };
+
+    }else{
+      snake.pop();
+    }
 
     ctx.clearRect(0,0,300,300);
 
-    snake.forEach(part=>{
+    /* comida */
+    ctx.fillStyle="red";
+    ctx.fillRect(
+      food.x*10,
+      food.y*10,
+      10,
+      10
+    );
 
-      ctx.fillStyle="lime";
+    /* snake */
+    ctx.fillStyle="lime";
+
+    snake.forEach(part=>{
 
       ctx.fillRect(
         part.x*10,
@@ -259,6 +293,11 @@ function startSnake(){
       );
 
     });
+
+    /* score */
+    ctx.fillStyle="white";
+    ctx.font="14px Arial";
+    ctx.fillText("Score: "+score,10,20);
 
   },120);
 
