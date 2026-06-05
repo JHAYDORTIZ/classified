@@ -329,5 +329,46 @@ function startSnake(){
 }
   
 function openFile(path){
-  window.open(path, "_blank");
+
+  const ext = path.split(".").pop().toLowerCase();
+
+  let win = document.createElement("div");
+  win.className = "window";
+
+  let title = "";
+  let content = "";
+
+  if(ext === "jpg" || ext === "png" || ext === "jpeg" || ext === "heic"){
+    title = "image";
+    content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
+  }
+
+  else if(ext === "mp4"){
+    title = "video";
+    content = `<video src="${path}" controls style="max-width:100%"></video>`;
+  }
+
+  else if(ext === "mp3"){
+    title = "audio";
+    content = `<audio src="${path}" controls autoplay></audio>`;
+  }
+
+  else {
+    title = "file";
+    content = `<p>${path}</p>`;
+  }
+
+  win.innerHTML = `
+    <div class="titlebar">
+      ${title}
+      <div class="close-btn">✖</div>
+    </div>
+    <div class="content">
+      ${content}
+    </div>
+  `;
+
+  document.getElementById("desktopArea").appendChild(win);
+
+  win.querySelector(".close-btn").onclick = () => win.remove();
 }
