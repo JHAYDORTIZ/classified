@@ -1,9 +1,63 @@
 {
   "files": [
-    "media/images/foto1.jpg",
-    "media/images/foto2.png",
-    "media/audio/track1.mp3",
+    /* IMAGES (jpg) */
+    "media/images/img1.jpg",
+    "media/images/img2.jpg",
+    "media/images/img3.jpg",
+    "media/images/img4.jpg",
+    "media/images/img5.jpg",
+    "media/images/img6.jpg",
+    "media/images/img7.jpg",
+    "media/images/img8.jpg",
+    "media/images/img9.jpg",
+    "media/images/img10.jpg",
+
+    /* AUDIO (mp3) */
+    "media/audio/audio1.mp3",
+    "media/audio/audio2.mp3",
+    "media/audio/audio3.mp3",
+    "media/audio/audio4.mp3",
+    "media/audio/audio5.mp3",
+    "media/audio/audio6.mp3",
+    "media/audio/audio7.mp3",
+    "media/audio/audio8.mp3",
+    "media/audio/audio9.mp3",
+    "media/audio/audio10.mp3",
+
+    /* VIDEOS (mp4) */
     "media/videos/video1.mp4",
-    "media/unknown/archivo1.jpg"
+    "media/videos/video2.mp4",
+    "media/videos/video3.mp4",
+    "media/videos/video4.mp4",
+    "media/videos/video5.mp4",
+    "media/videos/video6.mp4",
+    "media/videos/video7.mp4",
+    "media/videos/video8.mp4",
+    "media/videos/video9.mp4",
+    "media/videos/video10.mp4",
+
+    /* UNKNOWN (mezcla) */
+    "media/uknown/file1.jpg",
+    "media/uknown/file2.mp3",
+    "media/uknown/file3.mp4",
+    "media/uknown/file4.jpg",
+    "media/uknown/file5.mp3",
+    "media/uknown/file6.mp4",
+    "media/uknown/file7.jpg",
+    "media/uknown/file8.mp3",
+    "media/uknown/file9.mp4",
+    "media/uknown/file10.jpg",
+
+    /* RECYCLE */
+    "media/recycle/file1.jpg",
+    "media/recycle/file2.mp3",
+    "media/recycle/file3.mp4",
+    "media/recycle/file4.jpg",
+    "media/recycle/file5.mp3",
+    "media/recycle/file6.mp4",
+    "media/recycle/file7.jpg",
+    "media/recycle/file8.mp3",
+    "media/recycle/file9.mp4",
+    "media/recycle/file10.jpg"
   ]
 }
