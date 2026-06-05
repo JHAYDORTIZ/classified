@@ -24,9 +24,9 @@ function renderFolder(folderName) {
   const windowEl = document.getElementById(folderName);
   const content = windowEl.querySelector(".content");
 
-  const files = fileSystem.filter(f =>
-    f.startsWith(`media/${folderName}/`)
-  );
+ const files = fileSystem.filter(f =>
+  f.includes(`/${folderName}/`)
+);
 
   content.innerHTML = files.length
     ? files.map(f =>
