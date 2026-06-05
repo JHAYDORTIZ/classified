@@ -50,10 +50,14 @@ function playClick(){
 }
 
 /* LOGIN */
-document.getElementById("loginBtn").addEventListener("click", login);
+window.addEventListener("DOMContentLoaded", () => {
 
-document.getElementById("password").addEventListener("keydown", e=>{
-  if(e.key==="Enter") login();
+  document.getElementById("loginBtn").addEventListener("click", login);
+
+  document.getElementById("password").addEventListener("keydown", e=>{
+    if(e.key==="Enter") login();
+  });
+
 });
 
 function login() {
