@@ -360,7 +360,6 @@ function openFile(path){
 
   if(ext === "jpg" || ext === "png" || ext === "jpeg" || ext === "heic"){
     title = "image";
-    content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
   }
 
   else if(ext === "mp4"){
