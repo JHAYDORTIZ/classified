@@ -186,10 +186,6 @@ function selectTrack(i){
   play();
 }
 
-let audio = new Audio();
-let current = 0;
-let tracks = [];
-
 function play(){
   audio.src = tracks[current];
   audio.play();
