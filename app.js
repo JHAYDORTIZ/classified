@@ -178,11 +178,11 @@ function renderPlaylist(){
 
 function selectTrack(i){
   current = i;
-  play();
+  audio.src = tracks[current];
+  audio.play();
 }
 
 function play(){
-  audio.src = tracks[current];
   audio.play();
 }
 
