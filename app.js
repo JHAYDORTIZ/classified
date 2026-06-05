@@ -355,8 +355,9 @@ function openFile(path){
   let content = "";
 
   if(ext === "jpg" || ext === "png" || ext === "jpeg" || ext === "heic"){
-    title = "image";
-  }
+  title = "image";
+  content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
+}
 
   else if(ext === "mp4"){
     title = "video";
