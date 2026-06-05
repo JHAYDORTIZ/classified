@@ -347,6 +347,11 @@ function openFile(path){
   let win = document.createElement("div");
   win.className = "window";
 
+  // 🔥 FIX MOVIMIENTO
+  win.style.position = "absolute";
+  win.style.left = "200px";
+  win.style.top = "150px";
+
   let title = "";
   let content = "";
 
