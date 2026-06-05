@@ -384,6 +384,7 @@ function openFile(path){
     </div>
   `;
 
+  console.log("Abriendo:", path);
   document.getElementById("desktopArea").appendChild(win);
 
   win.querySelector(".close-btn").onclick = () => win.remove();
