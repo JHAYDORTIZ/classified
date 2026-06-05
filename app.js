@@ -144,14 +144,18 @@ function openFromSearch(name){
   if(map[name]) openWindow(map[name]);
 }
 
-/* REPRODUCTOR */
-let tracks=[
-  "media/audio/track1.mp3",
-  "media/audio/track2.mp3"
-];
+/* REPRODUCTOR (VERSION CON JSON) */
 
-let current=0;
-let audio=new Audio();
+let tracks = [];
+let current = 0;
+let audio = new Audio();
+
+fetch("index-media.json")
+  .then(r => r.json())
+  .then(data => {
+    tracks = data.files.filter(f => f.startsWith("media/audio/"));
+    renderPlaylist();
+  });
 
 function openPlayer(){
   playClick();
@@ -160,19 +164,19 @@ function openPlayer(){
 }
 
 function renderPlaylist(){
-  document.getElementById("playlist").innerHTML=
+  document.getElementById("playlist").innerHTML =
     tracks.map((t,i)=>
-      `<li onclick="selectTrack(${i})">${t}</li>`
+      `<li onclick="selectTrack(${i})">${t.split("/").pop()}</li>`
     ).join("");
 }
 
 function selectTrack(i){
-  current=i;
+  current = i;
   play();
 }
 
 function play(){
-  audio.src=tracks[current];
+  audio.src = tracks[current];
   audio.play();
 }
 
@@ -181,16 +185,16 @@ function pause(){
 }
 
 function next(){
-  current=(current+1)%tracks.length;
+  current = (current + 1) % tracks.length;
   play();
 }
 
 function seek(sec){
-  audio.currentTime+=sec;
+  audio.currentTime += sec;
 }
 
 function setTime(v){
-  audio.currentTime=(v/100)*audio.duration;
+  audio.currentTime = (v / 100) * audio.duration;
 }
 
 /* DRAG WINDOWS */
