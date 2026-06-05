@@ -182,9 +182,9 @@ function selectTrack(i){
   audio.play();
 }
 
-function play(){
-  audio.play();
-}
+let audio = new Audio();
+let current = 0;
+let tracks = [];
 
 function pause(){
   audio.pause();
