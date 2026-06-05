@@ -211,8 +211,6 @@ function setTime(v){
   audio.currentTime = (v / 100) * audio.duration;
 }
 
-content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
-
 /* DRAG WINDOWS */
 let dragWindow = null;
 let offsetX = 0;
