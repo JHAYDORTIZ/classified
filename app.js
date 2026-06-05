@@ -149,6 +149,12 @@ function openFromSearch(name){
 let tracks = [];
 let current = 0;
 let audio = new Audio();
+audio.ontimeupdate = () => {
+  const bar = document.getElementById("seekBar");
+  if (!audio.duration) return;
+
+  bar.value = (audio.currentTime / audio.duration) * 100;
+};
 
 fetch("index-media.json")
   .then(r => r.json())
