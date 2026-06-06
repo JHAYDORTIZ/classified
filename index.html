@@ -76,17 +76,38 @@
   </div>
 
   <div id="snake" class="window hidden">
-    <div class="titlebar">snake.exe <div class="close-btn" onclick="closeWindow('snake')">✖</div></div>
-    <div class="content">
-      <canvas
-  id="game"
-  width="300"
-  height="300"
-  style="background:black;border:1px solid #444;"
-></canvas>
-      <button onclick="startSnake()">START</button>
+  <div class="titlebar">snake.exe <div class="close-btn" onclick="closeWindow('snake')">✖</div></div>
+
+  <div class="content">
+    
+    <canvas
+      id="game"
+      width="300"
+      height="300"
+      style="background:black;border:1px solid #444;"
+    ></canvas>
+
+    <button onclick="startSnake()">START</button>
+
+    <!-- 🔥 CONTROLES MÓVIL -->
+    <div style="margin-top:10px; display:grid; grid-template-columns:repeat(3,60px); gap:5px; justify-content:center;">
+
+      <div></div>
+      <button onclick="setDir(0,-1)">⬆️</button>
+      <div></div>
+
+      <button onclick="setDir(-1,0)">⬅️</button>
+      <div></div>
+      <button onclick="setDir(1,0)">➡️</button>
+
+      <div></div>
+      <button onclick="setDir(0,1)">⬇️</button>
+      <div></div>
+
     </div>
+
   </div>
+</div>
 
   <!-- REPRODUCTOR -->
   <div id="player" class="window hidden">
