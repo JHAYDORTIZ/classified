@@ -415,4 +415,6 @@ function openFile(path){
   document.getElementById("desktopArea").appendChild(win);
 
   win.querySelector(".close-btn").onclick = () => win.remove();
+  function setDir(x, y) {
+  snakeDir = {x, y};
 }
