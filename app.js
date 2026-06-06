@@ -169,6 +169,9 @@ let current = 0;
 let audio = new Audio();
 let snakeDir = {x:1,y:0};
 
+function setDir(x, y) {
+  snakeDir = {x, y};
+}
 audio.ontimeupdate = () => {
   const bar = document.getElementById("seekBar");
   if (!audio.duration) return;
