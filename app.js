@@ -65,28 +65,32 @@ function setupLogin() {
         login();
       }
     });
+  }
+}
 
-setupLogin();
+/* 🔥 ESTO VA AQUÍ, FUERA */
+document.addEventListener("DOMContentLoaded", setupLogin);
 
 function login() {
   const v = document.getElementById("password").value.trim();
 
-  if(v==="pizza17" || v==="4tanyatapes") {
+  if (v === "pizza17" || v === "4tanyatapes") {
 
-    isAdmin = (v==="pizza17");
+    isAdmin = (v === "pizza17");
     currentUser = v;
 
-    document.getElementById("login").style.display="none";
-document.getElementById("desktop").classList.remove("hidden");
+    document.getElementById("login").style.display = "none";
+    document.getElementById("desktop").classList.remove("hidden");
 
-setTimeout(() => {
-  renderDesktop();
-}, 50);
-    boot.play().catch(()=>{});
+    setTimeout(() => {
+      renderDesktop();
+    }, 50);
+
+    boot.play().catch(() => {});
   }
   else {
     error.play();
-    document.getElementById("error").textContent="ACCESS DENIED";
+    document.getElementById("error").textContent = "ACCESS DENIED";
   }
 }
 
