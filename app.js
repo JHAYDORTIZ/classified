@@ -354,7 +354,6 @@ function openFile(path){
   let win = document.createElement("div");
   win.className = "window";
 
-  // 🔥 FIX MOVIMIENTO
   win.style.position = "absolute";
   win.style.left = "200px";
   win.style.top = "150px";
@@ -363,9 +362,9 @@ function openFile(path){
   let content = "";
 
   if(ext === "jpg" || ext === "png" || ext === "jpeg" || ext === "heic"){
-  title = "image";
-  content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
-}
+    title = "image";
+    content = `<img src="${path}" style="max-width:100%; max-height:100%;">`;
+  }
 
   else if(ext === "mp4"){
     title = "video";
@@ -376,22 +375,23 @@ function openFile(path){
     title = "audio";
     content = `<audio src="${path}" controls autoplay></audio>`;
   }
-    
-else if(ext === "txt"){
-  title = "text";
 
-  content = `<pre>${path}</pre>`; // temporal mientras carga
+  else if(ext === "txt"){
+    title = "text";
+    content = `<pre>Loading...</pre>`;
 
-  fetch(path)
-    .then(r => r.text())
-    .then(text => {
-      win.querySelector(".content").innerHTML =
-        `<pre>${text}</pre>`;
-    });
-}
+    fetch(path)
+      .then(r => r.text())
+      .then(text => {
+        win.querySelector(".content").innerHTML =
+          `<pre style="white-space:pre-wrap; word-wrap:break-word;">${text}</pre>`;
+      })
+      .catch(() => {
+        win.querySelector(".content").innerHTML =
+          `<p>Error loading file</p>`;
+      });
+  }
 
-  content = "Loading...";
-}
   else {
     title = "file";
     content = `<p>${path}</p>`;
@@ -407,7 +407,6 @@ else if(ext === "txt"){
     </div>
   `;
 
-  console.log("Abriendo:", path);
   document.getElementById("desktopArea").appendChild(win);
 
   win.querySelector(".close-btn").onclick = () => win.remove();
