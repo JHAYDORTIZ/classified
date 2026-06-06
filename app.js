@@ -224,10 +224,10 @@ let dragWindow = null;
 let offsetX = 0;
 let offsetY = 0;
 
-document.addEventListener("mousedown",(e)=>{
+document.addEventListener("pointerdown", (e) => {
 
   const bar = e.target.closest(".titlebar");
-  if(!bar) return;
+  if (!bar) return;
 
   dragWindow = bar.parentElement;
 
@@ -236,11 +236,12 @@ document.addEventListener("mousedown",(e)=>{
   offsetX = e.clientX - rect.left;
   offsetY = e.clientY - rect.top;
 
+  e.preventDefault(); // evita scroll en móvil
 });
 
-document.addEventListener("mousemove",(e)=>{
+document.addEventListener("pointermove", (e) => {
 
-  if(!dragWindow) return;
+  if (!dragWindow) return;
 
   dragWindow.style.left =
     (e.clientX - offsetX) + "px";
@@ -249,7 +250,7 @@ document.addEventListener("mousemove",(e)=>{
     (e.clientY - offsetY) + "px";
 });
 
-document.addEventListener("mouseup",()=>{
+document.addEventListener("pointerup", () => {
   dragWindow = null;
 });
 
