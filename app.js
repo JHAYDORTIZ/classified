@@ -297,9 +297,9 @@ if(e.key==="ArrowRight" && snakeDir.x!==-1)
   snakeInterval = setInterval(()=>{
 
     const head={
-      x:snake[0].x+dir.x,
-      y:snake[0].y+dir.y
-    };
+  x:snake[0].x+snakeDir.x,
+  y:snake[0].y+snakeDir.y
+  };
 
     if(
       head.x<0 ||
