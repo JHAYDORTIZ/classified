@@ -66,14 +66,6 @@ function setupLogin() {
       }
     });
 
-    pass.addEventListener("keyup", (e) => {
-      if (e.key === "Enter") {
-        login();
-      }
-    });
-  }
-}
-
 setupLogin();
 
 function login() {
