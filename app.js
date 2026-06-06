@@ -372,12 +372,15 @@ function openFile(path){
 else if(ext === "txt"){
   title = "text";
 
+  content = `<pre>${path}</pre>`; // temporal mientras carga
+
   fetch(path)
     .then(r => r.text())
     .then(text => {
       win.querySelector(".content").innerHTML =
         `<pre>${text}</pre>`;
     });
+}
 
   content = "Loading...";
 }
