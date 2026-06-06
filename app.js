@@ -69,7 +69,7 @@ function setupLogin() {
 }
 
 /* 🔥 ESTO VA AQUÍ, FUERA */
-setupLogin();
+document.addEventListener("DOMContentLoaded", setupLogin);
 function login() {
   const v = document.getElementById("password").value.trim();
 
