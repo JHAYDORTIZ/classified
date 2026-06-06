@@ -164,6 +164,7 @@ function openFromSearch(name){
 let tracks = [];
 let current = 0;
 let audio = new Audio();
+let snakeDir = {x:1,y:0};
 
 audio.ontimeupdate = () => {
   const bar = document.getElementById("seekBar");
