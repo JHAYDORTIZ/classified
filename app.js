@@ -121,24 +121,27 @@ icons.forEach((i,idx)=>{
 
 /* SEARCH */
 function searchFiles(){
-  const q=document.getElementById("search").value.toLowerCase();
-  const w=document.getElementById("searchWindow");
-  const box=document.getElementById("searchResults");
+  const q = document.getElementById("search").value.toLowerCase();
+  const w = document.getElementById("searchWindow");
+  const box = document.getElementById("searchResults");
 
-  if(!q){w.classList.add("hidden");return;}
+  if(!q){
+    w.classList.add("hidden");
+    return;
+  }
 
   w.classList.remove("hidden");
 
-  let res=[];
+  const results = fileSystem.filter(f =>
+    f.toLowerCase().includes(q)
+  );
 
-  document.querySelectorAll(".icon span").forEach(i=>{
-    if(i.textContent.toLowerCase().includes(q)){
-      res.push(i.textContent);
-    }
-  });
-
-  box.innerHTML=res.length
-    ? res.map(r=>`<p onclick="openFromSearch('${r}')">${r}</p>`).join("")
+  box.innerHTML = results.length
+    ? results.map(r =>
+        `<p onclick="openFile('${r}')">
+          ${r.split("/").pop()}
+        </p>`
+      ).join("")
     : "No results found";
 }
 
