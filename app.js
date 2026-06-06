@@ -14,7 +14,7 @@ fetch("index-media.json")
 
 function renderDesktop() {
   renderFolder("images");
-  renderFolder("video");
+  renderFolder("videos");
   renderFolder("notes");
   renderFolder("unknown");
   renderFolder("recycle");
