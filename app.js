@@ -52,11 +52,19 @@ function playClick(){
 /* LOGIN */
 window.addEventListener("DOMContentLoaded", () => {
 
-  document.getElementById("loginBtn").addEventListener("click", login);
+  const btn = document.getElementById("loginBtn");
+  const pass = document.getElementById("password");
 
-  document.getElementById("password").addEventListener("keydown", e=>{
-    if(e.key==="Enter") login();
-  });
+  if(btn) btn.addEventListener("click", login);
+
+  if(pass){
+    pass.addEventListener("keydown", (e) => {
+      if(e.key === "Enter") {
+        e.preventDefault();
+        login();
+      }
+    });
+  }
 
 });
 
