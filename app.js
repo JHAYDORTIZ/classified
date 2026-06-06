@@ -368,7 +368,19 @@ function openFile(path){
     title = "audio";
     content = `<audio src="${path}" controls autoplay></audio>`;
   }
+    
+else if(ext === "txt"){
+  title = "text";
 
+  fetch(path)
+    .then(r => r.text())
+    .then(text => {
+      win.querySelector(".content").innerHTML =
+        `<pre>${text}</pre>`;
+    });
+
+  content = "Loading...";
+}
   else {
     title = "file";
     content = `<p>${path}</p>`;
