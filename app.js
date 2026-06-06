@@ -74,7 +74,7 @@ function setupLogin() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", setupLogin);
+setupLogin();
 
 function login() {
   const v = document.getElementById("password").value.trim();
