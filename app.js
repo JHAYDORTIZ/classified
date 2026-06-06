@@ -59,13 +59,18 @@ function setupLogin() {
   }
 
   if (pass) {
-    pass.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        login();
-      }
-    });
-  }
+  pass.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      login();
+    }
+  });
+
+  pass.addEventListener("keyup", (e) => {
+    if (e.key === "Enter") {
+      login();
+    }
+  });
 }
 
 /* 🔥 ESTO VA AQUÍ, FUERA */
