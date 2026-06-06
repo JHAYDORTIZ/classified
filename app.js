@@ -420,8 +420,5 @@ function openFile(path){
 
   document.getElementById("desktopArea").appendChild(win);
 
-  win.querySelector(".close-btn").onclick = () => win.remove();
-  document.getElementById("desktopArea").appendChild(win);
-
 win.querySelector(".close-btn").onclick = () => win.remove();
 }
