@@ -280,17 +280,17 @@ function startSnake(){
   /* RESET TECLADO */
   document.onkeydown = (e)=>{
 
-    if(e.key==="ArrowUp" && dir.y!==1)
-      dir={x:0,y:-1};
+   if(e.key==="ArrowUp" && snakeDir.y!==1)
+  snakeDir={x:0,y:-1};
 
-    if(e.key==="ArrowDown" && dir.y!==-1)
-      dir={x:0,y:1};
+if(e.key==="ArrowDown" && snakeDir.y!==-1)
+  snakeDir={x:0,y:1};
 
-    if(e.key==="ArrowLeft" && dir.x!==1)
-      dir={x:-1,y:0};
+if(e.key==="ArrowLeft" && snakeDir.x!==1)
+  snakeDir={x:-1,y:0};
 
-    if(e.key==="ArrowRight" && dir.x!==-1)
-      dir={x:1,y:0};
+if(e.key==="ArrowRight" && snakeDir.x!==-1)
+  snakeDir={x:1,y:0};
 
   };
 
