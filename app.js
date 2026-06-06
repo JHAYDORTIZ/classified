@@ -50,23 +50,31 @@ function playClick(){
 }
 
 /* LOGIN */
-window.addEventListener("DOMContentLoaded", () => {
-
+function setupLogin() {
   const btn = document.getElementById("loginBtn");
   const pass = document.getElementById("password");
 
-  if(btn) btn.addEventListener("click", login);
+  if (btn) {
+    btn.addEventListener("click", login);
+  }
 
-  if(pass){
+  if (pass) {
     pass.addEventListener("keydown", (e) => {
-      if(e.key === "Enter") {
+      if (e.key === "Enter") {
         e.preventDefault();
         login();
       }
     });
-  }
 
-});
+    pass.addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        login();
+      }
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", setupLogin);
 
 function login() {
   const v = document.getElementById("password").value.trim();
