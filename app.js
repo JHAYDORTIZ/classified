@@ -268,8 +268,8 @@ function startSnake(){
   const ctx = canvas.getContext("2d");
 
   let snake = [{x:15,y:15}];
-  let dir = {x:1,y:0};
-
+  snakeDir = {x:1,y:0};
+  
   let food = {
     x:Math.floor(Math.random()*30),
     y:Math.floor(Math.random()*30)
