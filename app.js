@@ -65,18 +65,11 @@ function setupLogin() {
         login();
       }
     });
-
-    pass.addEventListener("keyup", (e) => {
-      if (e.key === "Enter") {
-        login();
-      }
-    });
   }
-} // 👈 ESTA ES LA QUE TE FALTA
+}
 
 /* 🔥 ESTO VA AQUÍ, FUERA */
 document.addEventListener("DOMContentLoaded", setupLogin);
-
 function login() {
   const v = document.getElementById("password").value.trim();
 
