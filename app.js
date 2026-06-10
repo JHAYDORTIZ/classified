@@ -73,7 +73,7 @@ setupLogin();
 function login() {
   const v = document.getElementById("password").value.trim();
 
-  if (v === "pizza17" || v === "4tanyatapes") {
+  if (v === "pizza17" || v === "agoodvillain") {
 
     isAdmin = (v === "pizza17");
     currentUser = v;
