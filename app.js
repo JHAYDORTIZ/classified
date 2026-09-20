@@ -1,7 +1,5 @@
 console.log("APP JS CARGADO");
 
-let isAdmin = false;
-let currentUser = null;
 
 let fileSystem = [];
 
@@ -47,50 +45,6 @@ clickSound.volume = 0.5;
 function playClick(){
   clickSound.currentTime = 0;
   clickSound.play().catch(()=>{});
-}
-
-/* LOGIN */
-function setupLogin() {
-  const btn = document.getElementById("loginBtn");
-  const pass = document.getElementById("password");
-
-  if (btn) {
-    btn.addEventListener("click", login);
-  }
-
-  if (pass) {
-    pass.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        login();
-      }
-    });
-  }
-}
-
-/* 🔥 ESTO VA AQUÍ, FUERA */
-setupLogin();
-function login() {
-  const v = document.getElementById("password").value.trim();
-
-  if (v === "pizza17" || v === "agoodvillain") {
-
-    isAdmin = (v === "pizza17");
-    currentUser = v;
-
-    document.getElementById("login").style.display = "none";
-    document.getElementById("desktop").classList.remove("hidden");
-
-    setTimeout(() => {
-      renderDesktop();
-    }, 50);
-
-    boot.play().catch(() => {});
-  }
-  else {
-    error.play();
-    document.getElementById("error").textContent = "ACCESS DENIED";
-  }
 }
 
 /* CLOCK */
